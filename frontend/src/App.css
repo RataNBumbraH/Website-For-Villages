@@ -1,0 +1,3075 @@
+/* .web-background{
+    min-height: 100vh;
+    background-image: 
+    linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+    url("./assest/village4.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+/* ============================================================
+   VILLAGE INFORMATION PORTAL — AURA CSS
+   Dark glassmorphism + animated ambient blobs + neon accents
+   ============================================================ */
+
+/* ═══════════════════════════════════════════════════════════
+   VILLAGE INFORMATION PORTAL — AURA STYLESHEET
+   Theme: Golden Hour · Earthy · Cinematic · Warm Punjab Soul
+   ═══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ── CSS VARIABLES ── */
+:root {
+  --gold:       #c9922a;
+  --gold-light: #e8b84b;
+  --gold-dim:   rgba(201, 146, 42, 0.18);
+  --earth:      #3b2a1a;
+  --earth-mid:  #5c3d22;
+  --cream:      #fdf6ec;
+  --warm-white: #fff9f0;
+  --green-deep: #1c3a25;
+  --green-mid:  #2d5c3a;
+  --green-soft: #4a7c59;
+  --dust:       #d4b896;
+  --shadow-warm: rgba(59, 42, 26, 0.22);
+  --shadow-gold: rgba(201, 146, 42, 0.28);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'DM Sans', sans-serif;
+  --transition:   all 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── RESET & BASE ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--earth);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ════════════════════════════════════════════
+   NAVBAR
+   ════════════════════════════════════════════ */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 68px;
+  background: rgba(28, 58, 37, 0.96);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(201, 146, 42, 0.25);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.28);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 22px var(--shadow-gold);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: 0.5px;
+  position: relative;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold-light);
+  border-radius: 2px;
+  transition: width 0.28s ease;
+}
+
+.nav-links a:hover {
+  color: var(--gold-light);
+}
+
+.nav-links a:hover::after { width: 100%; }
+
+.nav-links button {
+  padding: 8px 22px;
+  background: transparent;
+  border: 1.5px solid var(--gold);
+  border-radius: 50px;
+  color: var(--gold-light);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+}
+
+.nav-links button:hover {
+  background: var(--gold);
+  color: var(--earth);
+  box-shadow: 0 4px 20px var(--shadow-gold);
+}
+
+.panel-btn{
+  padding: 8px 22px;
+  background: transparent;
+  border: 1.5px solid var(--gold);
+  border-radius: 50px;
+  color: var(--gold-light);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-left: 500px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+}
+
+.panel-btn:hover{
+  background: var(--gold);
+  color: var(--earth);
+  box-shadow: 0 4px 20px var(--shadow-gold);
+}
+/* ════════════════════════════════════════════
+   INDEX PAGE — HERO (Landing)
+   ════════════════════════════════════════════ */
+
+.index-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* The hero IS the background image — full viewport */
+.index-container .hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 0 80px 80px;
+
+  background-image: url("./assest/village4.png");
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Cinematic gradient — dark at bottom, clear at top */
+.index-container .hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      rgba(20, 12, 5, 0.92) 0%,
+      rgba(20, 12, 5, 0.60) 40%,
+      rgba(20, 12, 5, 0.18) 75%,
+      rgba(20, 12, 5, 0.08) 100%
+    );
+  z-index: 0;
+}
+
+/* Golden aura glow at bottom-left */
+.index-container .hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(201, 146, 42, 0.22) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.index-container .hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.index-container .hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.08;
+  max-width: 780px;
+  margin-bottom: 18px;
+  letter-spacing: -1px;
+  text-shadow:
+    0 2px 40px rgba(0,0,0,0.6),
+    0 0 80px rgba(201, 146, 42, 0.18);
+
+  /* Fade-in animation */
+  animation: fadeUp 1s ease both;
+}
+
+.index-container .hero p {
+  font-size: clamp(1rem, 1.8vw, 1.22rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.80);
+  max-width: 540px;
+  line-height: 1.75;
+  margin-bottom: 44px;
+  letter-spacing: 0.2px;
+  animation: fadeUp 1s ease 0.18s both;
+}
+
+/* ── Hero Buttons ── */
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp 1s ease 0.34s both;
+}
+
+.login-btn,
+.signup-btn {
+  padding: 15px 44px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.login-btn {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.45);
+  backdrop-filter: blur(8px);
+}
+
+.login-btn:hover {
+  background: rgba(255,255,255,0.22);
+  border-color: rgba(255,255,255,0.7);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+}
+
+.signup-btn {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  color: var(--earth);
+  box-shadow: 0 4px 24px var(--shadow-gold);
+}
+
+.signup-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px var(--shadow-gold);
+  filter: brightness(1.08);
+}
+
+/* ════════════════════════════════════════════
+   FEATURES SECTION (Index page)
+   ════════════════════════════════════════════ */
+
+.features {
+  background: var(--warm-white);
+  padding: 90px 80px 100px;
+  position: relative;
+}
+
+/* Subtle grain texture */
+.features::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.features h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: var(--earth);
+  text-align: center;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+  font-style: italic;
+}
+
+.features h2::after {
+  content: '';
+  display: block;
+  width: 52px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 2px;
+  margin: 14px auto 52px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 24px;
+  max-width: 1140px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.feature-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 40px 30px 36px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 2px 12px rgba(59,42,26,0.07),
+    0 1px 3px rgba(59,42,26,0.05);
+  transition: var(--transition);
+  border: 1px solid rgba(201,146,42,0.12);
+}
+
+/* Gold top shimmer */
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 20px 48px rgba(59,42,26,0.14),
+    0 4px 16px var(--shadow-gold);
+  border-color: rgba(201,146,42,0.3);
+}
+
+.feature-card:hover::before { opacity: 1; }
+
+.feature-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--earth);
+  margin-bottom: 10px;
+  letter-spacing: -0.2px;
+}
+
+.feature-card p {
+  font-size: 0.92rem;
+  color: #7a6a5a;
+  line-height: 1.68;
+}
+
+/* ════════════════════════════════════════════
+   HOME PAGE — HERO (after login)
+   ════════════════════════════════════════════ */
+
+.hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 80px 70px;
+
+  background-image: url("./assest/village4.png");
+  background-size: cover;
+  background-position: center 40%;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(20,12,5,0.85) 0%,
+    rgba(20,12,5,0.55) 55%,
+    rgba(20,12,5,0.25) 100%
+  );
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(201,146,42,0.16) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero > * { position: relative; z-index: 1; }
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.12;
+  max-width: 700px;
+  margin-bottom: 28px;
+  letter-spacing: -0.8px;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+  animation: fadeUp 0.9s ease both;
+}
+
+/* ── Hero Stats Pills ── */
+.hero-stats {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+  animation: fadeUp 0.9s ease 0.15s both;
+}
+
+.hero-pill {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  color: rgba(255,255,255,0.90);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+}
+
+/* ── Highlight Cards (Most/Least Populated) ── */
+.highlight-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.9s ease 0.28s both;
+}
+
+.highlight-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 28px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(201,146,42,0.35);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  min-width: 170px;
+  transition: var(--transition);
+}
+
+.highlight-card:hover {
+  background: rgba(201,146,42,0.14);
+  border-color: rgba(201,146,42,0.6);
+  transform: translateY(-4px);
+}
+
+.hl-num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1.1;
+}
+
+.hl-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.hl-sub {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.50);
+  margin-top: 2px;
+}
+
+/* ════════════════════════════════════════════
+   VILLAGES SECTION (Home page grid)
+   ════════════════════════════════════════════ */
+
+.villages {
+  background: var(--cream);
+  padding: 80px 60px 90px;
+  position: relative;
+}
+
+.villages h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  color: var(--earth);
+  text-align: center;
+  margin-bottom: 50px;
+  font-style: italic;
+  letter-spacing: -0.3px;
+}
+
+.village-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 26px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Village Card ── */
+.card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 20px rgba(59,42,26,0.09),
+    0 1px 4px rgba(59,42,26,0.06);
+  border: 1px solid rgba(201,146,42,0.10);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow:
+    0 22px 52px rgba(59,42,26,0.16),
+    0 4px 20px var(--shadow-gold);
+  border-color: rgba(201,146,42,0.28);
+}
+
+.card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.card:hover img { transform: scale(1.06); }
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--earth);
+  padding: 16px 18px 4px;
+}
+
+.card p {
+  font-size: 0.72rem;
+  color: #8a7260;
+  padding: 0 18px 16px;
+  flex: 1;
+}
+
+.card button {
+  margin: 0 18px 18px;
+  padding: 11px 0;
+  width: calc(100% - 36px);
+  background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.card button:hover {
+  background: linear-gradient(135deg, var(--green-mid), var(--green-soft));
+  box-shadow: 0 6px 20px rgba(28,58,37,0.35);
+  transform: translateY(-1px);
+}
+
+/* ════════════════════════════════════════════
+   VILLAGES PAGE (browse all)
+   ════════════════════════════════════════════ */
+
+.villages-page {
+  padding: 40px 60px 80px;
+  background: var(--cream);
+  min-height: 100vh;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: var(--earth);
+  text-align: center;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.search-box {
+  display: block;
+  margin: 0 auto 40px;
+  width: 100%;
+  max-width: 500px;
+  padding: 14px 22px;
+  border: 1.5px solid var(--dust);
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  background: #fff;
+  color: var(--earth);
+  outline: none;
+  transition: var(--transition);
+  box-shadow: 0 2px 12px rgba(59,42,26,0.07);
+}
+
+.search-box::placeholder { color: #b5a090; }
+
+.search-box:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px var(--gold-dim), 0 2px 12px rgba(59,42,26,0.07);
+}
+
+.villages-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.village-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(201,146,42,0.12);
+  box-shadow: 0 4px 18px rgba(59,42,26,0.08);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.village-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 44px rgba(59,42,26,0.14), 0 4px 16px var(--shadow-gold);
+  border-color: rgba(201,146,42,0.26);
+}
+
+.village-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--earth);
+  padding: 18px 18px 4px;
+}
+
+.village-card p {
+  font-size: 0.85rem;
+  color: #8a7260;
+  padding: 2px 18px;
+}
+
+.village-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  margin-top: 14px;
+  transition: transform 0.45s ease;
+}
+
+.village-card:hover img { transform: scale(1.05); }
+
+.details-btn {
+  margin: 16px 18px 18px;
+  padding: 11px 0;
+  width: calc(100% - 36px);
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  color: var(--earth);
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: var(--transition);
+}
+
+.details-btn:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 8px 22px var(--shadow-gold);
+  transform: translateY(-2px);
+}
+
+.back-btn {
+  margin: 20px 0 0 60px;
+  padding: 10px 24px;
+  background: transparent;
+  border: 1.5px solid var(--gold);
+  border-radius: 50px;
+  color: var(--earth-mid);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.back-btn:hover {
+  background: var(--gold);
+  color: #fff;
+  box-shadow: 0 4px 16px var(--shadow-gold);
+}
+
+/* ════════════════════════════════════════════
+   VILLAGE DETAIL PAGE
+   ════════════════════════════════════════════ */
+
+.village-detail-page {
+  background: var(--cream);
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+.top-section {
+  padding: 24px 48px;
+  background: var(--green-deep);
+  display: flex;
+  align-items: center;
+}
+
+.top-section .back-btn {
+  margin: 0;
+  color: rgba(255,255,255,0.8);
+  border-color: rgba(255,255,255,0.35);
+}
+
+.top-section .back-btn:hover {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  box-shadow: none;
+}
+
+.village-card-detail {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 48px 32px;
+}
+
+.village-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--earth);
+  margin-bottom: 28px;
+  letter-spacing: -1px;
+  font-style: italic;
+  line-height: 1.1;
+}
+
+.gallery {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.gallery img {
+  width: 200px !important;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(59,42,26,0.15);
+  transition: var(--transition);
+  border: 2px solid transparent;
+}
+
+.gallery img:hover {
+  transform: scale(1.04);
+  border-color: var(--gold);
+  box-shadow: 0 8px 28px var(--shadow-gold);
+}
+
+.village-info {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.info-box {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  min-width: 130px;
+  border: 1px solid rgba(201,146,42,0.15);
+  box-shadow: 0 2px 12px rgba(59,42,26,0.07);
+  transition: var(--transition);
+}
+
+.info-box:hover {
+  border-color: var(--gold);
+  box-shadow: 0 6px 22px var(--shadow-gold);
+  transform: translateY(-3px);
+}
+
+.info-box h3 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.info-box p {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--earth);
+}
+
+.description-box {
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px 32px;
+  margin-bottom: 28px;
+  border-left: 4px solid var(--gold);
+  box-shadow: 0 2px 16px rgba(59,42,26,0.07);
+}
+
+.description-box h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--earth);
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.description-box p {
+  font-size: 0.96rem;
+  color: #6a5a4a;
+  line-height: 1.78;
+}
+
+/* ════════════════════════════════════════════
+   LOGIN & SIGNUP FORMS
+   ════════════════════════════════════════════ */
+
+.loginprocess {
+  background: var(--green-deep);
+  color: var(--gold-light);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 16px 48px;
+  border-bottom: 2px solid rgba(201,146,42,0.3);
+}
+
+.formContainer,
+.formContainer2 {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+  background-image:
+    radial-gradient(ellipse at 20% 80%, rgba(201,146,42,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 20%, rgba(28,58,37,0.07) 0%, transparent 55%);
+  padding: 40px 20px;
+}
+
+.authForm {
+  background: #fff;
+  border-radius: 24px;
+  padding: 48px 44px;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow:
+    0 8px 40px rgba(59,42,26,0.12),
+    0 2px 10px rgba(59,42,26,0.06);
+  border: 1px solid rgba(201,146,42,0.14);
+}
+
+.authForm input {
+  width: 100%;
+  padding: 13px 18px;
+  border: 1.5px solid #e0d4c4;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--earth);
+  background: var(--warm-white);
+  outline: none;
+  transition: var(--transition);
+}
+
+.authForm input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px var(--gold-dim);
+  background: #fff;
+}
+
+.authForm input::placeholder { color: #b5a590; }
+
+.getstarted {
+  padding: 14px;
+  background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+  margin-top: 6px;
+}
+
+.getstarted:hover {
+  background: linear-gradient(135deg, var(--green-mid) 0%, var(--green-soft) 100%);
+  box-shadow: 0 8px 24px rgba(28,58,37,0.38);
+  transform: translateY(-2px);
+}
+
+.authForm p {
+  text-align: center;
+  font-size: 0.88rem;
+  color: #8a7260;
+}
+
+.authForm p a {
+  color: var(--gold);
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.authForm p a:hover { color: var(--earth-mid); }
+
+/* ════════════════════════════════════════════
+   CAMP PAGES — CampGallery & VillageCamps
+   ════════════════════════════════════════════ */
+
+/* ── CampGallery page wrapper ── */
+.camp-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 64px 40px 80px;
+  animation: fadeUp 0.7s ease both;
+}
+
+/* Gold accent bar above title */
+.camp-page::before {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+.camp-page h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  color: var(--earth);
+  line-height: 1.1;
+  margin-bottom: 14px;
+  font-style: italic;
+  letter-spacing: -0.5px;
+}
+
+.camp-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding: 6px 16px;
+  background: rgba(201, 146, 42, 0.10);
+  border: 1px solid rgba(201, 146, 42, 0.25);
+  border-radius: 50px;
+}
+
+.camp-desc {
+  font-size: 1.05rem;
+  color: #6a5a4a;
+  line-height: 1.82;
+  margin-bottom: 44px;
+  max-width: 680px;
+  padding: 24px 28px;
+  background: #fff;
+  border-radius: 16px;
+  border-left: 4px solid var(--gold);
+  box-shadow: 0 2px 14px rgba(59,42,26,0.07);
+}
+
+/* ════════════════════════════════
+   SLIDESHOW — Main Featured Image
+   ════════════════════════════════ */
+
+.camp-main-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 500px;
+  border-radius: 22px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  box-shadow:
+    0 20px 60px rgba(59,42,26,0.28),
+    0 4px 20px rgba(59,42,26,0.14);
+  background: #1a1008;
+
+  /* Entry animation */
+  animation: fadeUp 0.6s ease both;
+}
+
+/* Cinematic dark vignette around edges */
+.camp-main-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 55%,
+      rgba(20,12,5,0.45) 100%
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gold shimmer bar at bottom of main image */
+.camp-main-image::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    var(--gold-light),
+    var(--gold),
+    transparent
+  );
+  z-index: 2;
+  animation: shimmer 2.8s linear infinite;
+  background-size: 200% auto;
+}
+
+.main-camp-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+
+  /* Smooth crossfade when image src changes */
+  animation: imgFade 0.55s ease both;
+  transition: transform 6s ease;
+}
+
+/* Slow Ken Burns drift on the active slide */
+.camp-main-image:hover .main-camp-img {
+  transform: scale(1.04);
+}
+
+/* ════════════════════════════════
+   THUMBNAIL STRIP
+   ════════════════════════════════ */
+
+.camp-gallery {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+  padding: 4px 2px 6px;
+}
+
+.gallery-img {
+  width: 100px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: var(--transition);
+  border: 2.5px solid transparent;
+  box-shadow: 0 2px 10px rgba(59,42,26,0.12);
+  opacity: 0.68;
+  filter: brightness(0.88) saturate(0.85);
+}
+
+.gallery-img:hover {
+  opacity: 0.9;
+  filter: brightness(1) saturate(1);
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 8px 22px rgba(59,42,26,0.22);
+}
+
+/* Active / selected thumbnail */
+.gallery-img.active {
+  border-color: var(--gold-light);
+  opacity: 1;
+  filter: brightness(1) saturate(1.05);
+  box-shadow:
+    0 0 0 3px rgba(201,146,42,0.35),
+    0 6px 20px rgba(59,42,26,0.2);
+  transform: translateY(-4px) scale(1.07);
+}
+
+/* ── Fade animation when main image swaps ── */
+@keyframes imgFade {
+  from { opacity: 0; transform: scale(1.025); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── VillageCamps list cards ── */
+.camp-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px 30px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(201,146,42,0.14);
+  box-shadow: 0 2px 14px rgba(59,42,26,0.07);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle left glow strip */
+.camp-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--gold), var(--gold-light));
+  border-radius: 4px 0 0 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.camp-card:hover {
+  box-shadow: 0 14px 36px rgba(59,42,26,0.13), 0 4px 14px var(--shadow-gold);
+  transform: translateY(-5px);
+  border-color: rgba(201,146,42,0.3);
+}
+
+.camp-card:hover::before { opacity: 1; }
+
+.camp-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--earth);
+  margin-bottom: 10px;
+  font-style: italic;
+  letter-spacing: -0.2px;
+}
+
+.camp-card p {
+  font-size: 0.92rem;
+  color: #7a6a5a;
+  line-height: 1.68;
+  margin-bottom: 6px;
+}
+
+/* ── "View Gallery" button inside camp-card ── */
+.camp-card button {
+  margin-top: 18px;
+  padding: 11px 28px;
+  background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 3px 12px rgba(28,58,37,0.22);
+}
+
+.camp-card button:hover {
+  background: linear-gradient(135deg, var(--green-mid) 0%, var(--green-soft) 100%);
+  box-shadow: 0 8px 24px rgba(28,58,37,0.38);
+  transform: translateY(-2px);
+}
+
+/* ════════════════════════════════════════════
+   "VIEW CAMPS" BUTTON — VillageDetails page
+   Targets: <Link><button>View Camps</button></Link>
+   ════════════════════════════════════════════ */
+
+.village-card-detail > a button,
+.village-card-detail a > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  margin-right: 12px;
+  padding: 13px 32px;
+  background: transparent;
+  border: 2px solid var(--gold);
+  border-radius: 50px;
+  color: var(--earth-mid);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gold fill sweep on hover */
+.village-card-detail > a button::before,
+.village-card-detail a > button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.village-card-detail > a button span,
+.village-card-detail a > button span { position: relative; z-index: 1; }
+
+.village-card-detail > a button:hover,
+.village-card-detail a > button:hover {
+  color: var(--earth);
+  border-color: var(--gold-light);
+  box-shadow: 0 8px 26px var(--shadow-gold);
+  transform: translateY(-3px);
+}
+
+.village-card-detail > a button:hover::before,
+.village-card-detail a > button:hover::before {
+  transform: translateX(0);
+}
+
+/* Village detail action row — space buttons nicely */
+.village-card-detail > a,
+.village-card-detail > button {
+  display: inline-block;
+  margin-top: 16px;
+  margin-right: 12px;
+}
+
+/* ════════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════════ */
+
+.footer {
+  background: var(--earth);
+  color: rgba(255,255,255,0.65);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+}
+
+.footerContainer {
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+  padding: 52px 80px 40px;
+}
+
+.footerSection h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.footerSection p {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.55);
+}
+
+.footerBottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+  padding: 18px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.4px;
+}
+
+/* ════════════════════════════════════════════
+   ADMIN LAYOUT & SIDEBAR
+   ════════════════════════════════════════════ */
+
+/* AdminLayout outer wrapper */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Override the inline style on AdminSidebar div */
+div[style*="width:230px"],
+div[style*="width: 230px"] {
+  background: #111a14 !important;
+  border-right: 1px solid rgba(201,146,42,0.18);
+  box-shadow: 4px 0 28px rgba(0,0,0,0.35);
+  padding: 32px 20px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Sidebar brand heading */
+div[style*="width:230px"] h2,
+div[style*="width: 230px"] h2 {
+  font-family: var(--font-display) !important;
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  color: var(--gold-light) !important;
+  font-style: italic;
+  letter-spacing: 0.3px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(201,146,42,0.2);
+  margin-bottom: 24px !important;
+  text-shadow: 0 0 18px rgba(201,146,42,0.3);
+}
+
+/* Sidebar nav links */
+div[style*="width:230px"] nav a,
+div[style*="width: 230px"] nav a {
+  display: block;
+  padding: 11px 16px;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.68);
+  transition: var(--transition);
+  letter-spacing: 0.3px;
+  text-decoration: none;
+}
+
+div[style*="width:230px"] nav a:hover,
+div[style*="width: 230px"] nav a:hover {
+  background: rgba(201,146,42,0.14);
+  color: var(--gold-light);
+  padding-left: 22px;
+}
+
+/* ════════════════════════════════════════════
+   ADMIN DASHBOARD — stat cards
+   ════════════════════════════════════════════ */
+
+/* Shared admin card style */
+.card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px 24px;
+  box-shadow: 0 4px 18px rgba(59,42,26,0.09);
+  border: 1px solid rgba(201,146,42,0.10);
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.32s ease;
+}
+
+.card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(59,42,26,0.14), 0 4px 14px var(--shadow-gold); border-color: rgba(201,146,42,0.28); }
+.card:hover::after { transform: scaleX(1); }
+
+.card h3 {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: #9a8a7a;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+.card p {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--earth);
+  line-height: 1;
+}
+
+/* Dashboard heading */
+div[style*="padding: 20px"] > h1,
+div[style*="padding:20px"] > h1 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--earth);
+  font-style: italic;
+  margin-bottom: 4px;
+}
+
+/* ════════════════════════════════════════════
+   ADMIN TABLES — Villages, Users, Camp Requests
+   ════════════════════════════════════════════ */
+
+/* Page wrapper for all admin content pages */
+.admin-page {
+  padding: 36px 40px;
+  background: var(--cream);
+  min-height: 100vh;
+}
+
+/* Generic admin h1 titles */
+h1 {
+  font-family: var(--font-display);
+  font-style: italic;
+  letter-spacing: -0.3px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none !important;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 22px rgba(59,42,26,0.09);
+  margin-top: 24px;
+}
+
+thead {
+  background: var(--green-deep);
+}
+
+thead th {
+  padding: 15px 18px;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none !important;
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(201,146,42,0.08);
+  transition: background 0.18s ease;
+}
+
+tbody tr:last-child { border-bottom: none; }
+
+tbody tr:hover { background: rgba(201,146,42,0.05); }
+
+tbody td {
+  padding: 14px 18px;
+  font-size: 0.9rem;
+  color: #4a3a2a;
+  border: none !important;
+  vertical-align: middle;
+}
+
+/* ── Role badge inside Users table ── */
+.role {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.role.admin {
+  background: rgba(220, 38, 38, 0.10);
+  color: #b91c1c;
+  border: 1px solid rgba(220,38,38,0.25);
+}
+
+.role.villagehead {
+  background: rgba(201,146,42,0.12);
+  color: var(--earth-mid);
+  border: 1px solid rgba(201,146,42,0.3);
+}
+
+.role.user {
+  background: rgba(28,58,37,0.09);
+  color: var(--green-mid);
+  border: 1px solid rgba(28,58,37,0.22);
+}
+
+/* ── Table action buttons (Edit / Delete / Approve / Reject) ── */
+tbody td button {
+  padding: 7px 16px;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-right: 6px;
+}
+
+/* First button in a td = Edit / Approve (green) */
+tbody td button:first-child {
+  background: rgba(28,58,37,0.10);
+  color: var(--green-deep);
+  border: 1px solid rgba(28,58,37,0.22);
+}
+
+tbody td button:first-child:hover {
+  background: var(--green-deep);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(28,58,37,0.3);
+}
+
+/* Second button in a td = Delete / Reject (red) */
+tbody td button:last-child {
+  background: rgba(220,38,38,0.08);
+  color: #b91c1c;
+  border: 1px solid rgba(220,38,38,0.22);
+}
+
+tbody td button:last-child:hover {
+  background: #b91c1c;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(180,28,28,0.3);
+}
+
+/* "Add Village" link-button above table */
+h1 + a button,
+h1 + a > button {
+  margin-bottom: 4px;
+  padding: 11px 26px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  color: var(--earth);
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.4px;
+  transition: var(--transition);
+  box-shadow: 0 4px 16px var(--shadow-gold);
+}
+
+h1 + a button:hover,
+h1 + a > button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--shadow-gold);
+}
+
+/* ════════════════════════════════════════════
+   ADMIN FORMS — AddVillage, EditVillage,
+                 CreateCamp, AssignVillage
+   ════════════════════════════════════════════ */
+
+/* Shared admin form wrapper */
+form.camp-form,
+form[onsubmit],
+form {
+  max-width: 680px;
+}
+
+/* Admin form inputs & textarea & select */
+form input:not([type="file"]),
+form textarea,
+form select {
+  display: block;
+  width: 100%;
+  padding: 13px 16px;
+  margin-bottom: 14px;
+  border: 1.5px solid #ddd0c0;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  color: var(--earth);
+  background: var(--warm-white);
+  outline: none;
+  transition: var(--transition);
+  appearance: none;
+}
+
+form input:not([type="file"]):focus,
+form textarea:focus,
+form select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px var(--gold-dim);
+  background: #fff;
+}
+
+form input::placeholder,
+form textarea::placeholder { color: #b5a08a; }
+
+form textarea {
+  min-height: 110px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+form select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9922a' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+/* File input */
+form input[type="file"] {
+  display: block;
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 12px 16px;
+  border: 1.5px dashed var(--dust);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: #8a7260;
+  background: rgba(201,146,42,0.04);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+form input[type="file"]:hover {
+  border-color: var(--gold);
+  background: rgba(201,146,42,0.08);
+}
+
+/* Form h3 section labels */
+form h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--earth);
+  margin: 20px 0 12px;
+  font-style: italic;
+}
+
+/* Primary submit / action button */
+form > button[type="submit"],
+form > button:not([type="button"]) {
+  display: inline-block;
+  padding: 13px 36px;
+  background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+  box-shadow: 0 4px 18px rgba(28,58,37,0.28);
+  margin-top: 8px;
+  margin-right: 12px;
+}
+
+form > button[type="submit"]:hover,
+form > button:not([type="button"]):hover {
+  background: linear-gradient(135deg, var(--green-mid) 0%, var(--green-soft) 100%);
+  box-shadow: 0 10px 28px rgba(28,58,37,0.38);
+  transform: translateY(-2px);
+}
+
+/* Cancel button */
+form > button[type="button"] {
+  display: inline-block;
+  padding: 13px 30px;
+  background: transparent;
+  color: #8a7260;
+  border: 1.5px solid #ddd0c0;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 8px;
+}
+
+form > button[type="button"]:hover {
+  border-color: #b91c1c;
+  color: #b91c1c;
+  background: rgba(220,38,38,0.06);
+}
+
+/* ── Image preview grids (AddVillage, EditVillage, CreateCamp) ── */
+.preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 8px 0 18px;
+}
+
+.preview-img {
+  width: 100px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 10px rgba(59,42,26,0.12);
+  transition: var(--transition);
+}
+
+.preview-img:hover {
+  border-color: var(--gold);
+  transform: scale(1.06);
+  box-shadow: 0 6px 18px var(--shadow-gold);
+}
+
+/* Inline image preview in EditVillage (uses style="display:flex") */
+div[style*="display: flex"][style*="flex-wrap"] img,
+div[style*="display:flex"][style*="flex-wrap"] img {
+  width: 100px !important;
+  height: 80px !important;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 10px rgba(59,42,26,0.12);
+  margin: 0 !important;
+  transition: var(--transition);
+}
+
+/* Delete X buttons on image thumbs */
+div[style*="position: relative"] > button,
+div[style*="position:relative"] > button {
+  position: absolute;
+  top: -6px !important;
+  right: -6px !important;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  background: #b91c1c !important;
+  color: #fff !important;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transition: transform 0.18s ease, background 0.18s ease;
+  z-index: 5;
+}
+
+div[style*="position: relative"] > button:hover,
+div[style*="position:relative"] > button:hover {
+  background: #991b1b !important;
+  transform: scale(1.18);
+}
+
+/* ════════════════════════════════════════════
+   CAMP REQUESTS — AdminCampRequests
+   ════════════════════════════════════════════ */
+
+.request-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(201,146,42,0.12);
+  box-shadow: 0 2px 14px rgba(59,42,26,0.07);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  transition: var(--transition);
+}
+
+.request-card:hover {
+  border-color: rgba(201,146,42,0.25);
+  box-shadow: 0 8px 28px rgba(59,42,26,0.11);
+}
+
+.request-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--earth);
+  font-style: italic;
+  margin-bottom: 4px;
+}
+
+.request-card p {
+  font-size: 0.88rem;
+  color: #8a7260;
+}
+
+/* Status badge */
+.status-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.status-badge.pending  { background: rgba(234,179,8,0.12);  color: #854d0e; border: 1px solid rgba(234,179,8,0.3);  }
+.status-badge.approved { background: rgba(28,58,37,0.10);   color: var(--green-mid); border: 1px solid rgba(28,58,37,0.22); }
+.status-badge.rejected { background: rgba(220,38,38,0.08);  color: #b91c1c; border: 1px solid rgba(220,38,38,0.2); }
+
+/* ════════════════════════════════════════════
+   FEEDBACK — AdminFeedback
+   ════════════════════════════════════════════ */
+
+.feedback-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 16px;
+  border-left: 4px solid var(--gold);
+  box-shadow: 0 2px 14px rgba(59,42,26,0.07);
+  transition: var(--transition);
+}
+
+.feedback-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 8px 28px rgba(59,42,26,0.11);
+}
+
+.feedback-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--earth);
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+.feedback-card p {
+  font-size: 0.9rem;
+  color: #7a6a5a;
+  line-height: 1.65;
+}
+
+/* ════════════════════════════════════════════
+   ASSIGN VILLAGE — AssignVillage
+   ════════════════════════════════════════════ */
+
+.assign-page {
+  max-width: 520px;
+  padding: 40px;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid rgba(201,146,42,0.15);
+  box-shadow: 0 6px 28px rgba(59,42,26,0.1);
+  margin: 40px auto;
+}
+
+.assign-page h1 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--earth);
+  font-style: italic;
+  margin-bottom: 28px;
+}
+
+/* Assign button (non-form button) */
+.assign-page button,
+div > button[onclick] {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 13px 36px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  color: var(--earth);
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.4px;
+  transition: var(--transition);
+  box-shadow: 0 4px 18px var(--shadow-gold);
+}
+
+.assign-page button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px var(--shadow-gold);
+}
+
+/* ── Edit User inline form (inside Users table area) ── */
+div > h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--earth);
+  font-style: italic;
+  margin: 32px 0 18px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(201,146,42,0.15);
+}
+
+/* ════════════════════════════════════════════
+   LOADING STATE
+   ════════════════════════════════════════════ */
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--earth-mid);
+  font-style: italic;
+}
+
+/* ════════════════════════════════════════════
+   KEYFRAME ANIMATIONS
+   ════════════════════════════════════════════ */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* ════════════════════════════════════════════
+   SEND CAMP REQUEST — VillageHead page
+   ════════════════════════════════════════════ */
+
+.send-request-page {
+  min-height: 100vh;
+  background: var(--cream);
+  background-image:
+    radial-gradient(ellipse at 10% 90%, rgba(201,146,42,0.09) 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 10%, rgba(28,58,37,0.07) 0%, transparent 55%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+/* The outer div wrapping h2 + inputs + button */
+.send-request-page > div,
+div:has(> h2 + input + textarea) {
+  width: 100%;
+  max-width: 560px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 52px 48px;
+  box-shadow:
+    0 8px 40px rgba(59,42,26,0.11),
+    0 2px 10px rgba(59,42,26,0.06);
+  border: 1px solid rgba(201,146,42,0.14);
+  animation: fadeUp 0.6s ease both;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gold shimmer stripe at top of card */
+div:has(> h2 + input + textarea)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--green-deep),
+    var(--gold),
+    var(--gold-light),
+    var(--gold),
+    var(--green-deep)
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Card heading */
+div:has(> h2 + input + textarea) h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--earth);
+  font-style: italic;
+  letter-spacing: -0.3px;
+  margin-bottom: 8px;
+}
+
+/* Decorative gold rule under heading */
+div:has(> h2 + input + textarea) h2::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 2px;
+  margin-top: 10px;
+  margin-bottom: 28px;
+}
+
+/* All inputs and textarea inside the request div */
+div:has(> h2 + input + textarea) input,
+div:has(> h2 + input + textarea) textarea {
+  display: block;
+  width: 100%;
+  padding: 13px 18px;
+  margin-bottom: 16px;
+  border: 1.5px solid #e0d4c4;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--earth);
+  background: var(--warm-white);
+  outline: none;
+  transition: var(--transition);
+}
+
+div:has(> h2 + input + textarea) input:focus,
+div:has(> h2 + input + textarea) textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px var(--gold-dim);
+  background: #fff;
+}
+
+div:has(> h2 + input + textarea) input::placeholder,
+div:has(> h2 + input + textarea) textarea::placeholder {
+  color: #b5a08a;
+}
+
+/* Textarea specific */
+div:has(> h2 + input + textarea) textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.65;
+}
+
+/* Date input — style the calendar icon gold */
+div:has(> h2 + input + textarea) input[type="date"] {
+  color-scheme: light;
+  cursor: pointer;
+}
+
+div:has(> h2 + input + textarea) input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(60%) sepia(60%) saturate(500%) hue-rotate(10deg);
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+div:has(> h2 + input + textarea) input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Send Request button */
+div:has(> h2 + input + textarea) button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-top: 6px;
+  background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 20px rgba(28,58,37,0.28);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shine sweep on hover */
+div:has(> h2 + input + textarea) button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.18),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+div:has(> h2 + input + textarea) button:hover {
+  background: linear-gradient(135deg, var(--green-mid) 0%, var(--green-soft) 100%);
+  box-shadow: 0 10px 30px rgba(28,58,37,0.38);
+  transform: translateY(-2px);
+}
+
+div:has(> h2 + input + textarea) button:hover::before {
+  left: 140%;
+}
+
+div:has(> h2 + input + textarea) button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgba(28,58,37,0.28);
+}
+
+/* ════════════════════════════════════════════
+   MY REQUESTS — VillageHead request list
+   ════════════════════════════════════════════ */
+
+.my-requests-page {
+  padding: 48px 48px 80px;
+  background: var(--cream);
+  min-height: 100vh;
+}
+
+.my-requests-page h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--earth);
+  font-style: italic;
+  margin-bottom: 32px;
+  letter-spacing: -0.3px;
+}
+
+/* Each request card */
+.my-request-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px 32px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(201,146,42,0.12);
+  box-shadow: 0 2px 16px rgba(59,42,26,0.07);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.my-request-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+  background: linear-gradient(to bottom, var(--gold), var(--gold-light));
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.my-request-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(59,42,26,0.12), 0 3px 12px var(--shadow-gold);
+  border-color: rgba(201,146,42,0.26);
+}
+
+.my-request-card:hover::before { opacity: 1; }
+
+.my-request-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--earth);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.my-request-card p {
+  font-size: 0.92rem;
+  color: #7a6a5a;
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+
+/* Inline status inside MyRequests (uses inline style color) */
+.my-request-card span[style*="color"] {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* Admin reply box */
+.my-request-card strong {
+  color: var(--earth-mid);
+  font-weight: 600;
+}
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .navbar { padding: 0 24px; }
+  .logo { font-size: 1.1rem; }
+
+  .index-container .hero,
+  .hero {
+    padding: 50px 28px 60px;
+    align-items: center;
+    text-align: center;
+    background-attachment: scroll;
+  }
+
+  .hero-buttons { justify-content: center; }
+  .highlight-row { justify-content: center; }
+  .hero-stats { justify-content: center; }
+
+  .features,
+  .villages { padding: 60px 24px 70px; }
+
+  .footerContainer { padding: 40px 28px 30px; gap: 32px; }
+
+  .villages-page { padding: 30px 20px 60px; }
+  .back-btn { margin-left: 20px; }
+
+  .village-card-detail { padding: 32px 20px; }
+  .authForm { padding: 36px 28px; }
+}
+
+@media (max-width: 480px) {
+  .village-container,
+  .villages-container {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 0.8rem; }
+}
+
+
+
+/* ════════════════════════════════════════════
+   ASSIGN VILLAGE ENHANCED UI
+   ════════════════════════════════════════════ */
+
+.assign-page {
+  max-width: 520px;
+  padding: 48px 42px;
+  background: #fff;
+  border-radius: 22px;
+  border: 1px solid rgba(201,146,42,0.15);
+  box-shadow: 
+    0 10px 40px rgba(59,42,26,0.12),
+    0 2px 10px rgba(59,42,26,0.06);
+  margin: 60px auto;
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.6s ease both;
+}
+
+/* golden top strip */
+.assign-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--green-deep),
+    var(--gold),
+    var(--gold-light),
+    var(--gold),
+    var(--green-deep)
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.assign-page h1 {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  color: var(--earth);
+  font-style: italic;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* dropdown styling */
+.assign-page select {
+  width: 100%;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  border: 1.5px solid #e0d4c4;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  background: var(--warm-white);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.assign-page select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px var(--gold-dim);
+  background: #fff;
+}
+
+/* button */
+.assign-page button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--earth);
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.assign-page button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px var(--shadow-gold);
+  filter: brightness(1.05);
+}
+
+/* SendFeedback card (child of .send-request-page) */
+.send-card {
+  width: 100%; max-width: 560px;
+  background: #fff;
+  border-radius: 24px; 
+  padding: 52px 48px;
+  box-shadow: 0 8px 40px rgba(59,42,26,0.11), 0 2px 10px rgba(59,42,26,0.06);
+  border: 1px solid rgba(201,146,42,0.14);
+  animation: fadeUp 0.6s ease both;
+  position: relative; 
+  overflow: hidden;
+}
+.send-card::before {
+  content: ''; 
+  position: absolute; 
+  top: 0; left: 0; 
+  right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--green-deep), var(--gold), var(--gold-light), var(--gold), var(--green-deep));
+  background-size: 200% auto; 
+  animation: shimmer 3s linear infinite;
+}
+.send-card h2 { font-family: var(--font-display); 
+font-size: 2rem; 
+font-weight: 700; 
+color: var(--earth); 
+font-style: italic; 
+margin-bottom: 8px; 
+}
+.send-card h2::after { 
+content: ''; 
+display: block; 
+width: 44px; 
+height: 3px; 
+background: linear-gradient(90deg, var(--gold), var(--gold-light)); 
+border-radius: 2px; 
+margin-top: 10px; 
+margin-bottom: 28px; 
+}
+.send-card select, .send-card textarea { display: block; 
+width: 100%; 
+padding: 13px 18px; 
+margin-bottom: 16px; 
+border: 1.5px solid #e0d4c4; 
+border-radius: 12px; 
+font-family: var(--font-body); 
+font-size: 0.95rem; 
+color: var(--earth); 
+background: var(--warm-white); 
+outline: none; 
+transition: var(--transition); 
+}
+.send-card select:focus, .send-card textarea:focus { 
+border-color: var(--gold); 
+box-shadow: 0 0 0 4px var(--gold-dim); 
+background: #fff; 
+}
+.send-card textarea { 
+min-height: 120px; 
+resize: vertical; 
+line-height: 1.65; 
+}
+.send-card .send-btn { display: block; 
+  width: 100%; 
+  padding: 15px; 
+  background: linear-gradient(135deg, var(--green-deep), var(--green-mid)); 
+  color: #fff; 
+  border: none; 
+  border-radius: 14px; 
+  font-family: var(--font-body); 
+  font-size: 1rem; 
+  font-weight: 700; 
+  cursor: pointer; 
+  transition: var(--transition); 
+  box-shadow: 0 4px 20px rgba(28,58,37,0.28); 
+}
+.send-card .send-btn:hover { 
+background: linear-gradient(135deg, var(--green-mid), var(--green-soft)); 
+box-shadow: 0 10px 30px rgba(28,58,37,0.38); 
+transform: translateY(-2px); 
+}
+
+/* Admin reply box inside .my-request-card */
+.admin-reply { 
+  margin-top: 14px; 
+  padding: 14px 18px; 
+  background: var(--warm-white); 
+  border-radius: 10px; 
+  border-left: 3px solid var(--gold-dim); 
+}
+.admin-reply strong { color: var(--earth-mid); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.6px; }
+.admin-reply p { margin-top: 4px; color: #6a5a4a; font-size: 0.9rem; }
+
+/* Meta pills row in .feedback-card */
+.meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.meta-pill { padding: 4px 12px; background: rgba(201,146,42,0.08); border: 1px solid rgba(201,146,42,0.2); border-radius: 50px; font-size: 0.78rem; font-weight: 600; color: var(--earth-mid); }
+
+/* Reply area in .feedback-card */
+.reply-area { margin-top: 14px; }
+.reply-area textarea { display: block; width: 100%; padding: 11px 15px; border: 1.5px solid #e0d4c4; border-radius: 10px; font-family: var(--font-body); font-size: 0.9rem; color: var(--earth); background: var(--warm-white); outline: none; resize: vertical; min-height: 80px; transition: var(--transition); }
+.reply-area textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 4px var(--gold-dim); background: #fff; }
+.reply-btn { margin-top: 10px; padding: 10px 26px; background: linear-gradient(135deg, var(--green-deep), var(--green-mid)); color: #fff; border: none; border-radius: 50px; font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: var(--transition); box-shadow: 0 3px 12px rgba(28,58,37,0.22); }
+.reply-btn:hover { background: linear-gradient(135deg, var(--green-mid), var(--green-soft)); box-shadow: 0 8px 24px rgba(28,58,37,0.38); transform: translateY(-2px); }
+
+/* status-badge.replied (add alongside .approved/.rejected) */
+.status-badge.replied { background: rgba(28,58,37,0.10); color: var(--green-mid); border: 1px solid rgba(28,58,37,0.22); }
+
+/* Info section left side of request card */
+.request-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--earth);
+  font-style: italic;
+  margin-bottom: 5px;
+}
+.request-info p {
+  font-size: 0.88rem;
+  color: #8a7260;
+}
+
+/* Meta pills row */
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+/* Action buttons container */
+.request-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Approve button */
+.btn-approve {
+  padding: 9px 22px;
+  background: rgba(28,58,37,0.08);
+  color: var(--green-deep);
+  border: 1.5px solid rgba(28,58,37,0.22);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-approve:hover {
+  background: var(--green-deep);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(28,58,37,0.32);
+  transform: translateY(-2px);
+}
+
+/* Reject button */
+.btn-reject {
+  padding: 9px 22px;
+  background: rgba(220,38,38,0.07);
+  color: #b91c1c;
+  border: 1.5px solid rgba(220,38,38,0.22);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-reject:hover {
+  background: #b91c1c;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(180,28,28,0.32);
+  transform: translateY(-2px);
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: #b5a090;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+/* ════════════════════════════════════════════
+   ADMIN CAMPS PAGE
+   Matches: Golden Hour · Warm Punjab Soul theme
+   ════════════════════════════════════════════ */
+
+/* ── Page Wrapper ── */
+.admin-camps-page {
+  padding: 36px 40px;
+  background: var(--cream);
+  min-height: 100vh;
+}
+
+/* ── Page Title ── */
+.admin-camps-page .page-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--earth);
+  letter-spacing: -0.3px;
+  margin-bottom: 6px;
+}
+
+.admin-camps-page .page-sub {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: #8a7260;
+  margin-bottom: 32px;
+}
+
+/* ── Camp Card ── */
+.admin-camps-page .camp-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px 30px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(201, 146, 42, 0.14);
+  box-shadow: 0 2px 14px rgba(59, 42, 26, 0.07);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gold left-strip on hover */
+.admin-camps-page .camp-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--gold), var(--gold-light));
+  border-radius: 4px 0 0 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.admin-camps-page .camp-card:hover {
+  box-shadow:
+    0 14px 36px rgba(59, 42, 26, 0.13),
+    0 4px 14px var(--shadow-gold);
+  transform: translateY(-5px);
+  border-color: rgba(201, 146, 42, 0.3);
+}
+
+.admin-camps-page .camp-card:hover::before {
+  opacity: 1;
+}
+
+/* ── Camp Card — Header Row ── */
+.admin-camps-page .camp-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+/* ── Camp Title ── */
+.admin-camps-page .camp-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--earth);
+  letter-spacing: -0.2px;
+  margin: 0;
+}
+
+/* ── Camp Date Badge ── */
+.admin-camps-page .camp-date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.6px;
+  padding: 5px 14px;
+  background: rgba(201, 146, 42, 0.10);
+  border: 1px solid rgba(201, 146, 42, 0.25);
+  border-radius: 50px;
+  white-space: nowrap;
+}
+
+/* ── Camp Description ── */
+.admin-camps-page .camp-card p {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: #7a6a5a;
+  line-height: 1.68;
+  margin-bottom: 0;
+}
+
+/* ── Camp Image Thumbnail Strip ── */
+.admin-camps-page .camp-gallery {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  margin-bottom: 4px;
+}
+
+.admin-camps-page .gallery-img {
+  width: 100px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: var(--transition);
+  border: 2.5px solid transparent;
+  box-shadow: 0 2px 10px rgba(59, 42, 26, 0.12);
+  opacity: 0.75;
+  filter: brightness(0.9) saturate(0.85);
+}
+
+.admin-camps-page .gallery-img:hover {
+  opacity: 1;
+  filter: brightness(1) saturate(1);
+  transform: translateY(-3px) scale(1.06);
+  border-color: var(--gold-light);
+  box-shadow: 0 8px 22px rgba(59, 42, 26, 0.22);
+}
+
+/* ── Camp Card Action Buttons ── */
+.admin-camps-page .camp-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.admin-camps-page .btn-edit {
+  padding: 9px 22px;
+  background: rgba(28, 58, 37, 0.08);
+  color: var(--green-deep);
+  border: 1.5px solid rgba(28, 58, 37, 0.22);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  letter-spacing: 0.3px;
+}
+
+.admin-camps-page .btn-edit:hover {
+  background: var(--green-deep);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(28, 58, 37, 0.32);
+  transform: translateY(-2px);
+}
+
+.admin-camps-page .btn-delete {
+  padding: 9px 22px;
+  background: rgba(220, 38, 38, 0.07);
+  color: #b91c1c;
+  border: 1.5px solid rgba(220, 38, 38, 0.22);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  letter-spacing: 0.3px;
+}
+
+.admin-camps-page .btn-delete:hover {
+  background: #b91c1c;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(180, 28, 28, 0.32);
+  transform: translateY(-2px);
+}
+
+/* ════════════════════════════════════════════
+   EDIT PANEL
+   ════════════════════════════════════════════ */
+
+.admin-camps-page .edit-panel {
+  margin-top: 36px;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid rgba(201, 146, 42, 0.22);
+  box-shadow: 0 8px 36px rgba(59, 42, 26, 0.11);
+  overflow: hidden;
+  animation: fadeUp 0.4s ease both;
+}
+
+/* ── Edit Panel Header ── */
+.admin-camps-page .edit-panel-header {
+  background: var(--green-deep);
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-camps-page .edit-panel-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--gold-light);
+  margin: 0;
+}
+
+.admin-camps-page .edit-panel-id {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.4px;
+}
+
+/* ── Edit Panel Body ── */
+.admin-camps-page .edit-panel-body {
+  padding: 28px 28px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ── Field Labels ── */
+.admin-camps-page .field-label {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #9a8a7a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ── Text Inputs ── */
+.admin-camps-page .edit-panel-body input:not([type="file"]) {
+  display: block;
+  width: 100%;
+  padding: 13px 16px;
+  margin-bottom: 18px;
+  border: 1.5px solid #ddd0c0;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  color: var(--earth);
+  background: var(--warm-white);
+  outline: none;
+  transition: var(--transition);
+}
+
+.admin-camps-page .edit-panel-body input:not([type="file"]):focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px var(--gold-dim);
+  background: #fff;
+}
+
+.admin-camps-page .edit-panel-body input::placeholder {
+  color: #b5a08a;
+}
+
+/* ── Date Input ── */
+.admin-camps-page .edit-panel-body input[type="date"] {
+  color-scheme: light;
+  cursor: pointer;
+}
+
+.admin-camps-page .edit-panel-body input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(60%) sepia(60%) saturate(500%) hue-rotate(10deg);
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.admin-camps-page .edit-panel-body input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* ── File Input ── */
+.admin-camps-page .edit-panel-body input[type="file"] {
+  display: block;
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 12px 16px;
+  border: 1.5px dashed var(--dust);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: #8a7260;
+  background: rgba(201, 146, 42, 0.04);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.admin-camps-page .edit-panel-body input[type="file"]:hover {
+  border-color: var(--gold);
+  background: rgba(201, 146, 42, 0.08);
+}
+
+/* ── Image Preview Grid ── */
+.admin-camps-page .preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 4px 0 20px;
+}
+
+.admin-camps-page .preview-img {
+  width: 100px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 10px rgba(59, 42, 26, 0.12);
+  transition: var(--transition);
+}
+
+.admin-camps-page .preview-img:hover {
+  border-color: var(--gold);
+  transform: scale(1.06);
+  box-shadow: 0 6px 18px var(--shadow-gold);
+}
+
+/* ── Edit Panel Footer (action buttons) ── */
+.admin-camps-page .edit-panel-footer {
+  padding: 8px 28px 28px;
+  display: flex;
+  gap: 12px;
+}
+
+/* Save Button */
+.admin-camps-page .btn-save {
+  display: inline-block;
+  padding: 13px 36px;
+  background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+  box-shadow: 0 4px 18px rgba(28, 58, 37, 0.28);
+}
+
+.admin-camps-page .btn-save:hover {
+  background: linear-gradient(135deg, var(--green-mid) 0%, var(--green-soft) 100%);
+  box-shadow: 0 10px 28px rgba(28, 58, 37, 0.38);
+  transform: translateY(-2px);
+}
+
+/* Cancel Button */
+.admin-camps-page .btn-cancel {
+  display: inline-block;
+  padding: 13px 30px;
+  background: transparent;
+  color: #8a7260;
+  border: 1.5px solid #ddd0c0;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.admin-camps-page .btn-cancel:hover {
+  border-color: #b91c1c;
+  color: #b91c1c;
+  background: rgba(220, 38, 38, 0.06);
+}
+
+/* ════════════════════════════════════════════
+   EMPTY STATE
+   ════════════════════════════════════════════ */
+
+.admin-camps-page .empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: #b5a090;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .admin-camps-page {
+    padding: 24px 20px 60px;
+  }
+
+  .admin-camps-page .camp-card {
+    padding: 22px 20px;
+  }
+
+  .admin-camps-page .camp-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-camps-page .edit-panel-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .admin-camps-page .edit-panel-body {
+    padding: 20px 20px 8px;
+  }
+
+  .admin-camps-page .edit-panel-footer {
+    flex-direction: column;
+    padding: 8px 20px 24px;
+  }
+
+  .admin-camps-page .btn-save,
+  .admin-camps-page .btn-cancel {
+    width: 100%;
+    text-align: center;
+  }
+
+  .admin-camps-page .gallery-img {
+    width: 80px;
+    height: 60px;
+  }
+}
