@@ -28,5 +28,4 @@ Thumbs.db
 *.ntvs*
 *.njsproj
 
-backend/uploads/*
-!.gitkeep
+backend/uploads/
