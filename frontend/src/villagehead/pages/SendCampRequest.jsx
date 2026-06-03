@@ -11,7 +11,7 @@ export default function SendCampRequest() {
   const today = new Date().toISOString().split("T")[0]
   const submit = async () => {
     try {
-      const res = await fetch("http://localhost:5000/villagehead/camp-request", {
+      const res = await fetch("https://website-for-villages-backend.onrender.com/villagehead/camp-request", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

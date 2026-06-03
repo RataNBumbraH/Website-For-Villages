@@ -14,7 +14,7 @@ export default function AdminDashboard() {
     const fetchDashboard = async () => {
       try {
 
-        const res = await fetch("http://localhost:5000/admin/dashboard", {
+        const res = await fetch("https://website-for-villages-backend.onrender.com/admin/dashboard", {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token")
           }

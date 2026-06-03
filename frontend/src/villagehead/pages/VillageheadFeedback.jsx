@@ -13,7 +13,7 @@ export default function SendFeedback() {
 
     if (!token) return;
 
-    fetch("http://localhost:5000/villagehead/camps", {
+    fetch("https://website-for-villages-backend.onrender.com/villagehead/camps", {
       headers: {
         Authorization: "Bearer " + token
       }
@@ -31,7 +31,7 @@ export default function SendFeedback() {
       return;
     }
 
-    const res = await fetch("http://localhost:5000/villagehead/feedback", {
+    const res = await fetch("https://website-for-villages-backend.onrender.com/villagehead/feedback", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

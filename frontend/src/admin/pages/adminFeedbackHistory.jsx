@@ -5,7 +5,7 @@ export default function AdminFeedbackHistory() {
   const [feedback, setFeedback] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/admin/feedback/replied", {
+    fetch("https://website-for-villages-backend.onrender.com/admin/feedback/replied", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token")
       }

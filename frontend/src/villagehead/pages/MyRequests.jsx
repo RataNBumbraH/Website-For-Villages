@@ -9,7 +9,7 @@ export default function MyRequests() {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const res = await fetch("http://localhost:5000/villagehead/my-request", {
+        const res = await fetch("https://website-for-villages-backend.onrender.com/villagehead/my-request", {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token")
           }

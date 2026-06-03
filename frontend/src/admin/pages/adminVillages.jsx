@@ -7,7 +7,7 @@ const [villages,setVillages] = useState([])
 
 useEffect(()=>{
 
-fetch("http://localhost:5000/admin/villages",{
+fetch("https://website-for-villages-backend.onrender.com/admin/villages",{
 
 headers:{
 Authorization:"Bearer "+localStorage.getItem("token")
@@ -23,7 +23,7 @@ const deleteVillage = async(id)=>{
 
 if(!window.confirm("Delete village?")) return
 
-await fetch(`http://localhost:5000/admin/villages/${id}`,{
+await fetch(`https://website-for-villages-backend.onrender.com/admin/villages/${id}`,{
 
 method:"DELETE",
 

@@ -21,7 +21,7 @@
 // const [newImages, setNewImages] = useState([]);
 
 // useEffect(() => {
-// fetch(`http://localhost:5000/admin/villages/${id}`, {
+// fetch(`https://website-for-villages-backend.onrender.com/admin/villages/${id}`, {
 // headers: {
 // Authorization: "Bearer " + localStorage.getItem("token")
 // }
@@ -83,7 +83,7 @@
 // formData.append("images", img);
 // });
 
-// await fetch(`http://localhost:5000/admin/villages/${id}`, {
+// await fetch(`https://website-for-villages-backend.onrender.com/admin/villages/${id}`, {
 // method: "PUT",
 // headers: {
 // Authorization: "Bearer " + localStorage.getItem("token")
@@ -119,7 +119,7 @@
 // {existingImages.map((img, i) => (
 // <div key={i} style={{ position: "relative" }}>
 // <img
-//   src={`http://localhost:5000/uploads/${img}`}
+//   src={`https://website-for-villages-backend.onrender.com/uploads/${img}`}
 //   alt={`${form.name || "Village"} ${i + 1}`}
 //   style={{ width: "100px", margin: "5px" }}
 // />
@@ -204,7 +204,7 @@ const token = localStorage.getItem("token");
 
 // ───── FETCH VILLAGE ─────
 useEffect(() => {
-fetch(`http://localhost:5000/admin/villages/${id}`, {
+fetch(`https://website-for-villages-backend.onrender.com/admin/villages/${id}`, {
 headers: {
 Authorization: "Bearer " + token
 }
@@ -229,7 +229,7 @@ setExistingImages(data.highlightImages || []);
 
 // ───── FETCH USERS ─────
 useEffect(() => {
-fetch("http://localhost:5000/admin/users", {
+fetch("https://website-for-villages-backend.onrender.com/admin/users", {
 headers: {
 Authorization: "Bearer " + token
 }
@@ -286,7 +286,7 @@ newImages.forEach(img => {
 formData.append("images", img);
 });
 
-await fetch(`http://localhost:5000/admin/villages/${id}`, {
+await fetch(`https://website-for-villages-backend.onrender.com/admin/villages/${id}`, {
 method: "PUT",
 headers: {
 Authorization: "Bearer " + token
@@ -297,7 +297,7 @@ body: formData
 // 2️⃣ ASSIGN VILLAGEHEAD (🔥 NEW)
 if (selectedHead) {
 
-await fetch("http://localhost:5000/admin/assign-village", {
+await fetch("https://website-for-villages-backend.onrender.com/admin/assign-village", {
 method: "PUT",
 headers: {
 "Content-Type": "application/json",
@@ -357,7 +357,7 @@ return (
 {existingImages.map((img, i) => (
 <div key={i} style={{ position: "relative" }}>
 <img
-  src={`http://localhost:5000/uploads/${img}`}
+  src={`https://website-for-villages-backend.onrender.com/uploads/${img}`}
   alt={`${form.name || "Village"} img ${i + 1}`}
   style={{ width: "100px", margin: "5px" }}
 />

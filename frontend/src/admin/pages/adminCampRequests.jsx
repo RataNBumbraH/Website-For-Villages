@@ -6,7 +6,7 @@ const [requests,setRequests] = useState([])
 
 useEffect(()=>{
 
-fetch("http://localhost:5000/admin/camp-request",{
+fetch("https://website-for-villages-backend.onrender.com/admin/camp-request",{
 
 headers:{
 Authorization:"Bearer "+localStorage.getItem("token")
@@ -21,7 +21,7 @@ Authorization:"Bearer "+localStorage.getItem("token")
 const approve = async(id)=>{
 
 await fetch(
-`http://localhost:5000/admin/camp-request/${id}/approve`,
+`https://website-for-villages-backend.onrender.com/admin/camp-request/${id}/approve`,
 {
 method:"PUT",
 headers:{
@@ -36,7 +36,7 @@ alert("Approved")
 const reject = async(id)=>{
 
 await fetch(
-`http://localhost:5000/admin/camp-request/${id}/reject`,
+`https://website-for-villages-backend.onrender.com/admin/camp-request/${id}/reject`,
 {
 method:"PUT",
 headers:{

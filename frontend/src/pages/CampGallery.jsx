@@ -9,7 +9,7 @@
 
 // useEffect(()=>{
 
-// fetch(`http://localhost:5000/camp/${id}`)
+// fetch(`https://website-for-villages-backend.onrender.com/camp/${id}`)
 // .then(res=>res.json())
 // .then(data=>setCamp(data))
 
@@ -39,7 +39,7 @@
 
 // <img
 // key={i}
-// src={`http://localhost:5000/uploads/${img}`}
+// src={`https://website-for-villages-backend.onrender.com/uploads/${img}`}
 // alt="camp"
 // className="gallery-img"
 // />
@@ -63,7 +63,7 @@ export default function CampGallery() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/camp/${id}`)
+    fetch(`https://website-for-villages-backend.onrender.com/camp/${id}`)
       .then(res => res.json())
       .then(data => setCamp(data));
   }, [id]);
@@ -98,7 +98,7 @@ export default function CampGallery() {
       <div className="camp-main-image">
         {camp.images?.length ? (
           <img
-            src={`http://localhost:5000/uploads/${camp.images[currentIndex]}`}
+            src={`https://website-for-villages-backend.onrender.com/uploads/${camp.images[currentIndex]}`}
             alt="camp"
             className="main-camp-img"
           />
@@ -113,7 +113,7 @@ export default function CampGallery() {
         {camp.images?.map((img, i) => (
           <img
             key={i}
-            src={`http://localhost:5000/uploads/${img}`}
+            src={`https://website-for-villages-backend.onrender.com/uploads/${img}`}
             alt="camp"
             className={`gallery-img ${i === currentIndex ? "active" : ""}`}
             onClick={() => setCurrentIndex(i)}

@@ -13,7 +13,7 @@
 
 // useEffect(()=>{
 
-// fetch("http://localhost:5000/villages")
+// fetch("https://website-for-villages-backend.onrender.com/villages")
 // .then(res=>res.json())
 // .then(data=>setVillages(data))
 
@@ -36,7 +36,7 @@
 // formData.append("images",images[i])
 // }
 
-// await fetch("http://localhost:5000/admin/create-camp",{
+// await fetch("https://website-for-villages-backend.onrender.com/admin/create-camp",{
 
 // method:"POST",
 
@@ -126,7 +126,7 @@ export default function CreateCamp() {
   const [villages, setVillages] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/villages")
+    fetch("https://website-for-villages-backend.onrender.com/villages")
       .then(res => res.json())
       .then(data => setVillages(data));
   }, []);
@@ -155,7 +155,7 @@ export default function CreateCamp() {
         formData.append("images", img);
       });
 
-      await fetch("http://localhost:5000/admin/create-camp", {
+      await fetch("https://website-for-villages-backend.onrender.com/admin/create-camp", {
         method: "POST",
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token")

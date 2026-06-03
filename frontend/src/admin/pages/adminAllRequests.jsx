@@ -6,7 +6,7 @@ export default function AdminAllRequests(){
 
   useEffect(()=>{
 
-    fetch("http://localhost:5000/admin/all-camp-requests",{
+    fetch("https://website-for-villages-backend.onrender.com/admin/all-camp-requests",{
       headers:{
         Authorization:"Bearer "+localStorage.getItem("token")
       }

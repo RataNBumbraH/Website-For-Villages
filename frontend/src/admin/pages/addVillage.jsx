@@ -38,7 +38,7 @@ const handleSubmit = async e=>{
       formData.append("images", images[i])
     }
 
-    const res = await fetch("http://localhost:5000/admin/addvillage",{
+    const res = await fetch("https://website-for-villages-backend.onrender.com/admin/addvillage",{
       method:"POST",
       headers:{
         Authorization:"Bearer "+localStorage.getItem("token")

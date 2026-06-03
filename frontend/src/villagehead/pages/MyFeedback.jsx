@@ -7,7 +7,7 @@ export default function MyFeedback() {
 
   useEffect(() => {
 
-    fetch("http://localhost:5000/villagehead/my-feedback", {
+    fetch("https://website-for-villages-backend.onrender.com/villagehead/my-feedback", {
       headers: {
         Authorization: "Bearer " + token
       }

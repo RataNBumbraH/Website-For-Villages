@@ -12,7 +12,7 @@ const fetchVillage = async () => {
 
 try {
 
-const res = await fetch(`http://localhost:5000/village/${id}`,{
+const res = await fetch(`https://website-for-villages-backend.onrender.com/village/${id}`,{
 headers:{ 
 Authorization: `Bearer ${localStorage.getItem("token")}`
 }
@@ -61,7 +61,7 @@ return(
 village.highlightImages.map((img, i)=>(
 <img
 key={i}
-src={`http://localhost:5000/uploads/${img}`}
+src={`https://website-for-villages-backend.onrender.com/uploads/${img}`}
 alt="village"
 style={{width:"200px", margin:"10px"}}
 />

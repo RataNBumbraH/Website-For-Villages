@@ -13,7 +13,7 @@ const fetchCamps = async()=>{
 try{
 
 const res = await fetch(
-`http://localhost:5000/village/${id}/camps`
+`https://website-for-villages-backend.onrender.com/village/${id}/camps`
 )
 
 const data = await res.json()

@@ -13,7 +13,7 @@ export default function Villages() {
   useEffect(() => {
     const fetchVillages = async () => {
       try {
-        const res = await fetch("http://localhost:5000/villages", {
+        const res = await fetch("https://website-for-villages-backend.onrender.com/villages", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
           }
@@ -91,7 +91,7 @@ export default function Villages() {
               <img
                 src={
                   randomImages[village._id]
-                    ? `http://localhost:5000/uploads/${randomImages[village._id]}`
+                    ? `https://website-for-villages-backend.onrender.com/uploads/${randomImages[village._id]}`
                     : "/placeholder.png"
                 }
                 alt={village.name}

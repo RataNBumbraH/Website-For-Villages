@@ -7,7 +7,7 @@ export default function VillageHeadCamps() {
   useEffect(() => {
   const fetchCamps = async () => {
     try {
-      const res = await fetch("http://localhost:5000/villagehead/camps", {
+      const res = await fetch("https://website-for-villages-backend.onrender.com/villagehead/camps", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },

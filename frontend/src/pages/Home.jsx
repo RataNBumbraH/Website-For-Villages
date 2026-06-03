@@ -15,7 +15,7 @@ const navigate = useNavigate();
 useEffect(() => {
   const fetchVillages = async () => {
     try {
-      const res = await fetch("http://localhost:5000/villages");
+      const res = await fetch("https://website-for-villages-backend.onrender.com/villages");
       if (!res.ok) throw new Error("Failed to fetch villages");
       const data = await res.json();
       setVillages(data);
@@ -30,7 +30,7 @@ useEffect(() => {
 useEffect(() => {
   const fetchCampsCount = async () => {
     try {
-      const res = await fetch("http://localhost:5000/camps/count");
+      const res = await fetch("https://website-for-villages-backend.onrender.com/camps/count");
       const data = await res.json();
       setTotalCamps(data.count);
     } catch (err) {
@@ -127,7 +127,7 @@ return (
       {shuffledVillages.map((village, index) => (
         <div className="card" key={index}>
           <img
-            src={`http://localhost:5000/uploads/${village.highlightImages?.[0]}`}
+            src={`https://website-for-villages-backend.onrender.com/uploads/${village.highlightImages?.[0]}`}
             alt={village.name}
           />
           <h3 style={{fontSize: "1.4rem"}}>{village.name}</h3>

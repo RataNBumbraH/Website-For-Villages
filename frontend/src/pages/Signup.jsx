@@ -14,7 +14,7 @@ const navigate = useNavigate();
 const handleSubmit = async(e)=>{
 e.preventDefault();
 try{
-    const signpress= await fetch('http://localhost:5000/auth/signup',{
+    const signpress= await fetch('https://website-for-villages-backend.onrender.com/auth/signup',{
         method:'POST',
         headers:{
             'Content-Type':'application/json'

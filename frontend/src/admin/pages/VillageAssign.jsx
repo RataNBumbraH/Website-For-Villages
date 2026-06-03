@@ -12,7 +12,7 @@ export default function AssignVillage() {
 
   // 🔹 fetch users
   useEffect(() => {
-    fetch("http://localhost:5000/admin/users", {
+    fetch("https://website-for-villages-backend.onrender.com/admin/users", {
       headers: {
         Authorization: "Bearer " + token
       }
@@ -23,7 +23,7 @@ export default function AssignVillage() {
 
   // 🔹 fetch villages
   useEffect(() => {
-    fetch("http://localhost:5000/admin/villages", {
+    fetch("https://website-for-villages-backend.onrender.com/admin/villages", {
       headers: {
         Authorization: "Bearer " + token
       }
@@ -40,7 +40,7 @@ export default function AssignVillage() {
       return;
     }
 
-    const res = await fetch("http://localhost:5000/admin/assign-village", {
+    const res = await fetch("https://website-for-villages-backend.onrender.com/admin/assign-village", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

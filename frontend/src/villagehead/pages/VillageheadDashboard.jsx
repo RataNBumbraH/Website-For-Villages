@@ -8,7 +8,7 @@ export default function VillageHeadDashboard() {
     const token = localStorage.getItem("token");
 
     // 🔹 Fetch profile
-    fetch("http://localhost:5000/villagehead/profile", {
+    fetch("https://website-for-villages-backend.onrender.com/villagehead/profile", {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -17,7 +17,7 @@ export default function VillageHeadDashboard() {
       .then((data) => setProfile(data));
 
     // 🔹 Fetch requests
-    fetch("http://localhost:5000/villagehead/my-request", {
+    fetch("https://website-for-villages-backend.onrender.com/villagehead/my-request", {
       headers: {
         Authorization: "Bearer " + token,
       },

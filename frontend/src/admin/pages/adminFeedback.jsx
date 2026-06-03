@@ -6,7 +6,7 @@ export default function AdminFeedback() {
   const [reply, setReply] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:5000/admin/feedback", {
+    fetch("https://website-for-villages-backend.onrender.com/admin/feedback", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token")
       }
@@ -16,7 +16,7 @@ export default function AdminFeedback() {
   }, []);
 
   const sendReply = async (id) => {
-    await fetch(`http://localhost:5000/admin/feedback/${id}`, {
+    await fetch(`https://website-for-villages-backend.onrender.com/admin/feedback/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -11,7 +11,7 @@ export default function AdminCamps() {
   }, []);
 
   const fetchCamps = async () => {
-    const res = await fetch("http://localhost:5000/admin/camps", {
+    const res = await fetch("https://website-for-villages-backend.onrender.com/admin/camps", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token")
       }
@@ -24,7 +24,7 @@ export default function AdminCamps() {
   // ================= DELETE =================
   const deleteCamp = async (id) => {
     if (!window.confirm("Delete this camp?")) return;
-    await fetch(`http://localhost:5000/admin/camp/${id}`, {
+    await fetch(`https://website-for-villages-backend.onrender.com/admin/camp/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token")
@@ -48,7 +48,7 @@ export default function AdminCamps() {
       formData.append("images", img);
     });
 
-    await fetch(`http://localhost:5000/admin/camp/${editingCamp._id}`, {
+    await fetch(`https://website-for-villages-backend.onrender.com/admin/camp/${editingCamp._id}`, {
       method: "PUT",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token")
@@ -95,7 +95,7 @@ export default function AdminCamps() {
                   <img
                     key={i}
                     className="gallery-img"
-                    src={`http://localhost:5000/uploads/${img}`}
+                    src={`https://website-for-villages-backend.onrender.com/uploads/${img}`}
                     alt={`${camp.title} img ${i + 1}`}
                   />
                 ))}

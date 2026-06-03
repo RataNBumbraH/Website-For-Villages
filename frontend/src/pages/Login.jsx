@@ -8,7 +8,7 @@ const navigate = useNavigate()
 const handleSubmit= async (e)=>{
 e.preventDefault()
 try{
-const loginres = await fetch('http://localhost:5000/auth/login',{
+const loginres = await fetch('https://website-for-villages-backend.onrender.com/auth/login',{
 method:'POST',
 headers:{'Content-Type':'application/json'},
 body:JSON.stringify({contactno,password})

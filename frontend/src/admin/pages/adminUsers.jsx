@@ -17,7 +17,7 @@ export default function AdminUsers() {
   /* ================= FETCH USERS ================= */
 
   const fetchUsers = () => {
-    fetch("http://localhost:5000/admin/users", {
+    fetch("https://website-for-villages-backend.onrender.com/admin/users", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token")
       }
@@ -37,7 +37,7 @@ export default function AdminUsers() {
     const confirmDelete = window.confirm("Delete this user?");
     if (!confirmDelete) return;
 
-    await fetch(`http://localhost:5000/admin/user/${id}`, {
+    await fetch(`https://website-for-villages-backend.onrender.com/admin/user/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token")
@@ -75,7 +75,7 @@ export default function AdminUsers() {
 
     e.preventDefault();
 
-    await fetch(`http://localhost:5000/admin/user/${editingUser}`, {
+    await fetch(`https://website-for-villages-backend.onrender.com/admin/user/${editingUser}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
