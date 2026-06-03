@@ -24,7 +24,7 @@ const app = express();
 
 app.use(cors(
     {
-        origin:["*"],
+        origin:['https://website-for-villages.vercel.app'],
         methods:['GET','POST','PUT','DELETE'],
         allowedHeaders:['Content-Type','Authorization'],
         credentials:true
