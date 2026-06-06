@@ -3073,3 +3073,12 @@ transform: translateY(-2px);
     height: 60px;
   }
 }
+
+@media (max-width: 768px) {
+  
+  /* 1. Website ke har single element par boundary check lagao */
+  *, *::before, *::after {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
