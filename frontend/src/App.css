@@ -142,7 +142,7 @@ a { text-decoration: none; color: inherit; }
   box-shadow: 0 4px 20px var(--shadow-gold);
 }
 
-.panel-btn{
+/* .panel-btn{
   padding: 8px 22px;
   background: transparent;
   border: 1.5px solid var(--gold);
@@ -152,6 +152,20 @@ a { text-decoration: none; color: inherit; }
   font-size: 0.88rem;
   font-weight: 500;
   margin-left: 500px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+} */
+
+.panel-btn {
+  padding: 8px 22px;
+  background: transparent;
+  border: 1.5px solid var(--gold);
+  border-radius: 50px;
+  color: var(--gold-light);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
   cursor: pointer;
   letter-spacing: 0.5px;
   transition: var(--transition);
@@ -3074,3 +3088,24 @@ transform: translateY(-2px);
   }
 }
 
+/* 📱 Mobile CSS (At the very end of your file) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px !important;
+    height: auto !important;
+    flex-direction: column !important; /* Mobile par logo upar aur baki links neeche */
+    gap: 15px !important;
+    text-align: center;
+  }
+
+  .nav-links {
+    flex-direction: column !important; /* Saare buttons ek ke neeche ek makkhan jaise */
+    width: 100% !important;
+    gap: 12px !important;
+  }
+
+  .panel-btn, .nav-links button, .nav-links a {
+    width: 100% !important; /* Mobile par tap karne ke liye full width layout */
+    text-align: center;
+  }
+}
