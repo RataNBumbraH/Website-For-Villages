@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 
 export default function AdminSidebar(){
+    const userId = localStorage.getItem("userId");
   return(
     <div style={{
       width:"230px",
@@ -35,7 +36,7 @@ export default function AdminSidebar(){
       {/* 🔄 Wapas User Portal (Home) par jaane ka responsive button */}
       <div style={{marginTop: "40px", paddingTop: "20px", borderTop: "1px solid rgba(255,255,255,0.1)"}}>
         <Link 
-          to="/" 
+          to={`/home/${userId}`} 
           style={{
             display: "block",
             textAlign: "center",
