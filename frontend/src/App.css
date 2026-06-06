@@ -3082,3 +3082,37 @@ transform: translateY(-2px);
     box-sizing: border-box !important;
   }
 }
+
+html, body {
+    width: 100% !important;
+    overflow-x: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 3. Village Head Name aur baki input/text boxes ka error fix */
+  input, textarea, select, .village-info, .info-box, p, h1, h2, h3 {
+    max-width: 100% !important;
+    word-wrap: break-word !important; /* Text bada hoga toh lines break ho jayengi */
+    overflow-wrap: break-word !important;
+  }
+
+  /* 4. Grids aur Rows ko mobile flex banaya */
+  .feature-grid, .village-container, .villages-container, .highlight-row, .hero-stats {
+    grid-template-columns: 1fr !important; /* Single column layout for mobile */
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+
+  /* 5. Hero Sections aur landing areas ki sizing */
+  .index-container .hero, .hero {
+    background-attachment: scroll !important; /* Mobile lag khatam */
+    padding: 40px 20px !important;
+    width: 100% !important;
+  }
+
+  .index-container .hero h1, .hero h1 {
+    font-size: 2.2rem !important;
+  }
