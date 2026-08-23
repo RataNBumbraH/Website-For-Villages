@@ -6,10 +6,6 @@ import protect from '../middleware/authmiddleware.js';
 import Village from '../model/Village.js';
 const router = express.Router();
 
-// router.get("/test",(req,res)=>{
-// res.json({message:"Auth route working"})
-// })
-
 //Signup
 router.post("/auth/signup", async (req, res) => {
     const {username,contactno,age,address,qualification,password} = req.body;
