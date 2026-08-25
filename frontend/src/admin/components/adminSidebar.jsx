@@ -1,7 +1,37 @@
 import { Link } from "react-router-dom"
+import { useState, useEffect } from "react";
 
 export default function AdminSidebar(){
     const userId = localStorage.getItem("userId");
+    const [pendingCount, setPendingCount] = useState(0);
+
+    // Pending requests di count fetch karn layi
+    useEffect(() => {
+      const fetchPendingRequests = async () => {
+        try {
+          const res = await fetch("https://website-for-villages-backend.onrender.com/admin/camp-request", {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token")
+            }
+          });
+          if (res.ok) {
+            const data = await res.json();
+            // Sirf "pending" status wali requests da count kadd lao
+            const pending = data.filter(req => req.status === "pending");
+            setPendingCount(pending.length);
+          }
+        } catch (err) {
+          console.log("Error fetching camp requests count:", err);
+        }
+      };
+
+      fetchPendingRequests();
+      
+      // Har 10 second baad auto-refresh v ho sakda hai ta je live notification mile
+      const interval = setInterval(fetchPendingRequests, 10000);
+      return () => clearInterval(interval);
+    }, []);
+
   return(
     <div style={{
       width:"230px",
@@ -12,7 +42,7 @@ export default function AdminSidebar(){
       padding:"20px",
       display: "flex",
       flexDirection: "column",
-      justifyContent: "space-between" /* Isse link aur buttons top-bottom stretch ho jayenge */
+      justifyContent: "space-between"
     }}>
 
       <div>
@@ -25,7 +55,27 @@ export default function AdminSidebar(){
           <Link to="/admin/villages">Manage Villages</Link>
           <Link to="/admin/users">Users</Link>
           <Link to="/admin/camps">Camps</Link>
-          <Link to="/admin/camp-request">Camp Requests</Link>
+          
+          {/* ✅ Camp Requests link with Notification Badge */}
+          <Link 
+            to="/admin/camp-request" 
+            style={{ display: "flex", justifyContent: "space-between", alignItems: "center", textDecoration: "none", color: "inherit" }}
+          >
+            <span>Camp Requests</span>
+            {pendingCount > 0 && (
+              <span style={{
+                background: "#ef4444",
+                color: "white",
+                borderRadius: "50%",
+                padding: "2px 8px",
+                fontSize: "0.75rem",
+                fontWeight: "bold"
+              }}>
+                {pendingCount}
+              </span>
+            )}
+          </Link>
+
           <Link to="/admin/feedback">Feedback</Link>
           <Link to="/admin/all-requests">All Requests</Link>
           <Link to="/admin/feedback/replied">Replied Feedback</Link>
@@ -41,7 +91,7 @@ export default function AdminSidebar(){
             display: "block",
             textAlign: "center",
             padding: "10px 15px",
-            background: "linear-gradient(135deg, #c9922a 0%, #e8b84b 100%)", /* Punjab Gold Theme Tint */
+            background: "linear-gradient(135deg, #c9922a 0%, #e8b84b 100%)",
             color: "#3b2a1a",
             borderRadius: "8px",
             fontWeight: "600",
