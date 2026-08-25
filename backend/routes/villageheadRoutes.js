@@ -103,6 +103,16 @@ router.post("/villagehead/feedback", protect, async (req, res) => {
       return res.status(400).json({ error: "Missing fields" });
     }
 
+    // ✅ CHECK FOR DUPLICATE FEEDBACK
+    const existingFeedback = await Feedback.findOne({
+      villagehead: req.user.id,
+      camp: campId
+    });
+
+    if (existingFeedback) {
+      return res.status(400).json({ error: "You have already sent feedback for this camp!" });
+    }
+
     const feedback = new Feedback({
       villagehead: req.user.id,
       village: req.user.village,   // ✅ FIXED HERE

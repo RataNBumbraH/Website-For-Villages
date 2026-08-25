@@ -8,9 +8,7 @@ export default function SendFeedback() {
 
   const token = localStorage.getItem("token");
 
-  // ✅ FIX: add token in dependency
   useEffect(() => {
-
     if (!token) return;
 
     fetch("https://website-for-villages-backend.onrender.com/villagehead/camps", {
@@ -25,39 +23,46 @@ export default function SendFeedback() {
   }, [token]);
 
   const sendFeedback = async () => {
-
     if (!campId || !message) {
       alert("Please select camp and write message");
       return;
     }
 
-    const res = await fetch("https://website-for-villages-backend.onrender.com/villagehead/feedback", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token
-      },
-      body: JSON.stringify({
-        message,
-        campId
-      })
-    });
+    try {
+      const res = await fetch("https://website-for-villages-backend.onrender.com/villagehead/feedback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token
+        },
+        body: JSON.stringify({
+          message,
+          campId
+        })
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-if (!res.ok) {
-  alert(data.error || "Something went wrong");
-  return;
-}
+      if (!res.ok) {
+        // ✅ Backend da duplicate error message show karu ga
+        alert(data.error || "Something went wrong");
+        return;
+      }
 
-alert(data.message || "Feedback sent successfully");
+      alert(data.message || "Feedback sent successfully");
+      setMessage("");
+      setCampId("");
+
+    } catch (err) {
+      alert("Error sending feedback");
+    }
   };
 
-   return (
+  return (
     <div className="send-request-page">
-      <div className="send-card">  {/* ⚠️ NEW CLASS — add to CSS (see below) */}
+      <div className="send-card">
         <h2>Send Feedback</h2>
-        <select onChange={(e) => setCampId(e.target.value)}>
+        <select value={campId} onChange={(e) => setCampId(e.target.value)}>
           <option value="">Select Camp</option>
           {camps.map(c => <option key={c._id} value={c._id}>{c.title}</option>)}
         </select>
