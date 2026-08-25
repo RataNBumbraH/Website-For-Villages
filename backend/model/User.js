@@ -32,13 +32,20 @@ const userSchema = new mongoose.Schema({
     default:"user"
   },
 
-  // 🔥 ADD THIS (MOST IMPORTANT)
   village:{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Village",
     required: function() {
       return this.role === "villagehead";
     }
+  },
+
+  // ✅ ADDED FOR OTP LOGIN
+  loginOtp: {
+    type: String
+  },
+  otpExpire: {
+    type: Date
   }
 
 });
