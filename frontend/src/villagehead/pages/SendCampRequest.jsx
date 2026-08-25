@@ -9,6 +9,7 @@ export default function SendCampRequest() {
 
   const navigate = useNavigate()
   const today = new Date().toISOString().split("T")[0]
+
   const submit = async () => {
     try {
       const res = await fetch("https://website-for-villages-backend.onrender.com/villagehead/camp-request", {
@@ -24,6 +25,8 @@ export default function SendCampRequest() {
         }),
       });
 
+      const data = await res.json();
+
       if (res.ok) {
         alert("Request sent successfully")
         navigate("/villagehead/my-request")
@@ -32,7 +35,8 @@ export default function SendCampRequest() {
         setDescription("")
         setDate("")
       } else {
-        throw new Error("Failed")
+        // ✅ Backend da error message show karva do (jivein duplicate request error)
+        alert(data.error || "Failed to send request")
       }
 
     } catch (err) {

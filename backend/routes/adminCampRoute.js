@@ -94,19 +94,35 @@ router.delete("/admin/camp/:id", protect, adminOnly, async (req, res) => {
 
 /* GET ALL REQUESTS */
 
-router.get(
-  "/admin/camp-request",
+router.post(
+  "/villagehead/camp-request",
   protect,
-  adminOnly,
   async (req, res) => {
     try {
+      const { title, description, date } = req.body;
+      const villageHeadId = req.user._id; // Auth middleware ton user mil janda hai
 
-      // ✅ ONLY PENDING REQUESTS
-      const request = await CampRequest.find({ status: "pending" })
-        .populate("village", "name")
-        .populate("villagehead", "username");
+      // ✅ Check if this village head already has a pending request
+      const existingRequest = await CampRequest.findOne({ 
+        villagehead: villageHeadId, 
+        status: "pending" 
+      });
 
-      res.json(request);
+      if (existingRequest) {
+        return res.status(400).json({ error: "You already have a pending camp request!" });
+      }
+
+      const newRequest = new CampRequest({
+        title,
+        description,
+        date,
+        villagehead: villageHeadId,
+        village: req.user.village, 
+        status: "pending"
+      });
+
+      await newRequest.save();
+      res.status(201).json({ message: "Camp request sent successfully" });
 
     } catch (err) {
       res.status(500).json({ error: err.message });
