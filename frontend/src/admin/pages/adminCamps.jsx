@@ -6,6 +6,11 @@ export default function AdminCamps() {
   const [editingCamp, setEditingCamp] = useState(null);
   const [images, setImages] = useState([]);
 
+  // ✅ New states for Add Camp
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [newCamp, setNewCamp] = useState({ title: "", description: "", date: "" });
+  const [newImages, setNewImages] = useState([]);
+
   useEffect(() => {
     fetchCamps();
   }, []);
@@ -19,6 +24,36 @@ export default function AdminCamps() {
 
     const data = await res.json();
     setCamps(data);
+  };
+
+  // ================= ADD CAMP =================
+  const addCamp = async () => {
+    const formData = new FormData();
+    formData.append("title", newCamp.title);
+    formData.append("description", newCamp.description);
+    formData.append("date", newCamp.date);
+
+    // images
+    newImages.forEach(img => {
+      formData.append("images", img);
+    });
+
+    const res = await fetch(`https://website-for-villages-backend.onrender.com/admin/camp`, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token")
+      },
+      body: formData
+    });
+
+    if (res.ok) {
+      setShowAddModal(false);
+      setNewCamp({ title: "", description: "", date: "" });
+      setNewImages([]);
+      fetchCamps();
+    } else {
+      alert("Failed to add camp");
+    }
   };
 
   // ================= DELETE =================
@@ -36,7 +71,6 @@ export default function AdminCamps() {
 
   // ================= UPDATE WITH IMAGES =================
   const updateCamp = async () => {
-
     const formData = new FormData();
 
     formData.append("title", editingCamp.title);
@@ -64,9 +98,20 @@ export default function AdminCamps() {
   return (
     <div className="admin-camps-page">
 
-      {/* ── Title ── */}
-      <h1 className="page-heading">Admin Camps</h1>
-      <p className="page-sub">Manage and update camp listings.</p>
+      {/* ── Title & Add Button ── */}
+      <div className="page-header-row" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+        <div>
+          <h1 className="page-heading">Admin Camps</h1>
+          <p className="page-sub">Manage and update camp listings.</p>
+        </div>
+        <button 
+          className="btn-add" 
+          onClick={() => setShowAddModal(true)}
+          style={{ padding: "10px 20px", backgroundColor: "#28a745", color: "white", border: "none", borderRadius: "5px", cursor: "pointer", fontWeight: "bold" }}
+        >
+          ➕ Add New Camp
+        </button>
+      </div>
 
       {/* ── Camp List ── */}
       {camps.length === 0 ? (
@@ -114,6 +159,68 @@ export default function AdminCamps() {
 
           </div>
         ))
+      )}
+
+      {/* ── Add Camp Modal / Panel ── */}
+      {showAddModal && (
+        <div className="edit-panel" style={{ border: "2px solid #28a745", marginTop: "30px", padding: "20px", borderRadius: "8px" }}>
+
+          <div className="edit-panel-header">
+            <h3>➕ Add New Camp</h3>
+          </div>
+
+          <div className="edit-panel-body">
+            <label className="field-label">Title</label>
+            <input
+              value={newCamp.title}
+              placeholder="Camp title"
+              onChange={(e) => setNewCamp({ ...newCamp, title: e.target.value })}
+            />
+
+            <label className="field-label">Description</label>
+            <input
+              value={newCamp.description}
+              placeholder="Short description"
+              onChange={(e) => setNewCamp({ ...newCamp, description: e.target.value })}
+            />
+
+            <label className="field-label">Date</label>
+            <input
+              type="date"
+              value={newCamp.date}
+              onChange={(e) => setNewCamp({ ...newCamp, date: e.target.value })}
+            />
+
+            <label className="field-label">Upload Images</label>
+            <input
+              type="file"
+              multiple
+              onChange={(e) => setNewImages([...e.target.files])}
+            />
+
+            {newImages.length > 0 && (
+              <div className="preview-container">
+                {newImages.map((img, i) => (
+                  <img
+                    key={i}
+                    className="preview-img"
+                    src={URL.createObjectURL(img)}
+                    alt={`preview-${i}`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="edit-panel-footer" style={{ marginTop: "15px" }}>
+            <button className="btn-save" onClick={addCamp} style={{ marginRight: "10px", backgroundColor: "#28a745", color: "white", padding: "8px 15px", border: "none", borderRadius: "4px" }}/>
+              💾 Save Camp
+            <button className="btn-cancel" onClick={() => { setShowAddModal(false); setNewImages([]); }} style={{ padding: "8px 15px", border: "1px solid #ccc", borderRadius: "4px" }}>
+              Cancel
+            </button>
+          </div>
+
+        </div>
       )}
 
       {/* ── Edit Panel ── */}
