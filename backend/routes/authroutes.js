@@ -36,7 +36,6 @@ router.post("/auth/signup", async (req, res) => {
 });
 
 //Login 
-// 1️⃣ Step 1: Password verify karke OTP bhejan wala route (ya temporary flag return karna)
 router.post("/auth/login", async (req, res) => {
     const { contactno, password, otp } = req.body;
     try {
@@ -50,12 +49,13 @@ router.post("/auth/login", async (req, res) => {
             return res.status(400).json({ message: "Invalid Credentials" });
         }
 
-        // ✅ JE OTP AAYA HAI TA VERIFY KARO
+        // ✅ 2nd STEP: JE OTP AAYA HAI TA VERIFY KARO
         if (otp) {
-            if (user.loginOtp !== otp || user.otpExpire < Date.now()) {
+            if (!user.loginOtp || user.loginOtp !== otp || user.otpExpire < Date.now()) {
                 return res.status(400).json({ message: "Invalid or Expired OTP" });
             }
-            // Clear OTP after successful use
+            
+            // Login successful hon ton baad OTP clear kar do
             user.loginOtp = undefined;
             user.otpExpire = undefined;
             await user.save();
@@ -66,6 +66,12 @@ router.post("/auth/login", async (req, res) => {
                 { expiresIn: "7days" }
             );
 
+            res.cookie("token", token, {
+                httpOnly: true,
+                sameSite: "strict",
+                maxAge: 7 * 24 * 60 * 60 * 1000
+            });
+
             return res.json({
                 token,
                 userId: user._id,
@@ -74,18 +80,42 @@ router.post("/auth/login", async (req, res) => {
             });
         }
 
-        // ✅ STEP 1 PASSED: GENERATE OTP (Aap ethe console ya SMS API ch OTP bhej sakde ho)
+        // ✅ 1st STEP: PASSWORD MATCH HOGYA, HUN OTP GENERATE KARO
         const generatedOtp = Math.floor(100000 + Math.random() * 900000).toString(); // 6 digit OTP
         user.loginOtp = generatedOtp;
         user.otpExpire = Date.now() + 10 * 60 * 1000; // 10 minutes expiry
         await user.save();
 
-        // **NOTE:** Real SMS bhejan layi ethe Twilio ya Fast2SMS API lag sakdi hai. Filhal testing layi console te print hovega:
-        console.log(`🔑 Login OTP for ${contactno}: ${generatedOtp}`);
+        // 📱 FAST2SMS API TO SEND REAL SMS TO PHONE NUMBER
+        try {
+            const smsResponse = await fetch("https://www.fast2sms.com/dev/bulkV2", {
+                method: "POST",
+                headers: {
+                    "authorization": "OcmEPIbrTuDo6g9XNzkUJGhqBvAV4iFdZYQwL07153jWsaRtxyFTtCBugJAypj4lQWwLox5eZ0I278ki", 
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    route: "otp",
+                    variables_values: generatedOtp,
+                    numbers: contactno.toString() 
+                })
+            });
+
+            const smsData = await smsResponse.json();
+            console.log("Fast2SMS Response:", smsData);
+
+            if (!smsData.return) {
+                return res.status(500).json({ message: "Failed to send SMS. Check API Key or balance." });
+            }
+
+        } catch (smsErr) {
+            console.log("SMS Error:", smsErr);
+            return res.status(500).json({ message: "Error in sending SMS gateway" });
+        }
 
         res.json({ 
             requiresOtp: true, 
-            message: "OTP sent to your registered contact/device (Check server console for testing)" 
+            message: "OTP sent successfully to your mobile number!" 
         });
 
     } catch(error){
