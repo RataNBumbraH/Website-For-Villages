@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar"; // ⭐ Navbar added for consistency
 
 export default function UserProfile() {
   const [profile, setProfile] = useState(null);
@@ -108,69 +109,74 @@ export default function UserProfile() {
     }
   };
 
-  if (!profile) return <p>Loading profile...</p>;
+  if (!profile) return <p style={{ textAlign: "center", marginTop: "50px" }}>Loading profile...</p>;
 
   return (
-    <div style={{ maxWidth: "600px", margin: "20px auto", padding: "20px", background: "#fff", borderRadius: "10px", boxShadow: "0 2px 10px rgba(0,0,0,0.1)" }}>
-      <h2>My Profile</h2>
+    <div>
+      <Navbar />
+      <div style={{ maxWidth: "600px", margin: "30px auto", padding: "20px", background: "#fff", borderRadius: "10px", boxShadow: "0 2px 10px rgba(0,0,0,0.1)" }}>
+        <h2>My Profile</h2>
 
-      {!isEditing ? (
-        <div>
-          <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "20px" }}>
-            <img 
-              src={profile.profilePic || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"} 
-              alt="Profile" 
-              style={{ width: "90px", height: "90px", borderRadius: "50%", objectFit: "cover", border: "2px solid #ccc" }}
-            />
-            <button onClick={() => setIsEditing(true)} style={{ padding: "6px 12px", cursor: "pointer", background: "#2563eb", color: "#fff", border: "none", borderRadius: "5px" }}>
-              Edit Profile
-            </button>
+        {!isEditing ? (
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "20px" }}>
+              <img 
+                src={profile.profilePic || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"} 
+                alt="Profile" 
+                style={{ width: "90px", height: "90px", borderRadius: "50%", objectFit: "cover", border: "2px solid #ccc" }}
+              />
+              <button onClick={() => setIsEditing(true)} style={{ padding: "8px 16px", cursor: "pointer", background: "#2563eb", color: "#fff", border: "none", borderRadius: "5px", fontWeight: "bold" }}>
+                Edit Profile
+              </button>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px", background: "#f9fafb", padding: "15px", borderRadius: "8px" }}>
+              <p><strong>Name:</strong> {profile.username || profile.name}</p>
+              <p><strong>Email:</strong> {profile.email}</p>
+              <p><strong>Contact No:</strong> {profile.contactno || "Not Provided"}</p>
+              <p><strong>Address:</strong> {profile.address || "Not Provided"}</p>
+              <p><strong>Qualification:</strong> {profile.qualification || "Not Provided"}</p>
+              <p><strong>Age:</strong> {profile.age || "Not Provided"}</p>
+              {/* ⭐ Backend populate("village", "name") support added */}
+              <p><strong>Assigned Village:</strong> {profile.village?.name || "Not Assigned"}</p>
+              <p><strong>Role:</strong> <span style={{ textTransform: "capitalize", fontWeight: "bold" }}>{profile.role}</span></p>
+            </div>
           </div>
+        ) : (
+          <form onSubmit={handleUpdateProfile} style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            
+            <label><strong>Profile Picture:</strong></label>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <img 
+                src={form.profilePic || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"} 
+                alt="Preview" 
+                style={{ width: "50px", height: "50px", borderRadius: "50%", objectFit: "cover", border: "1px solid #ccc" }}
+              />
+              <input type="file" accept="image/*" onChange={handleFileChange} />
+            </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "10px", background: "#f9fafb", padding: "15px", borderRadius: "8px" }}>
-            <p><strong>Name:</strong> {profile.username || profile.name}</p>
-            <p><strong>Email:</strong> {profile.email}</p>
-            <p><strong>Contact No:</strong> {profile.contactno || "Not Provided"}</p>
-            <p><strong>Address:</strong> {profile.address || "Not Provided"}</p>
-            <p><strong>Qualification:</strong> {profile.qualification || "Not Provided"}</p>
-            <p><strong>Age:</strong> {profile.age || "Not Provided"}</p>
-            <p><strong>Role:</strong> <span style={{ textTransform: "capitalize", fontWeight: "bold" }}>{profile.role}</span></p>
-          </div>
-        </div>
-      ) : (
-        <form onSubmit={handleUpdateProfile} style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          
-          <label><strong>Profile Picture:</strong></label>
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <img 
-              src={form.profilePic || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"} 
-              alt="Preview" 
-              style={{ width: "50px", height: "50px", borderRadius: "50%", objectFit: "cover", border: "1px solid #ccc" }}
-            />
-            <input type="file" accept="image/*" onChange={handleFileChange} />
-          </div>
+            <label><strong>Name:</strong></label>
+            <input name="username" value={form.username} onChange={handleChange} required style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }} />
 
-          <label><strong>Name:</strong></label>
-          <input name="username" value={form.username} onChange={handleChange} required style={{ padding: "8px" }} />
+            <label><strong>Contact No:</strong></label>
+            <input name="contactno" value={form.contactno} onChange={handleChange} minLength={10} maxLength={10} required style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }} />
 
-          <label><strong>Contact No:</strong></label>
-          <input name="contactno" value={form.contactno} onChange={handleChange} minLength={10} maxLength={10} required style={{ padding: "8px" }} />
+            <label><strong>Address:</strong></label>
+            <input name="address" value={form.address} onChange={handleChange} required style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }} />
 
-          <label><strong>Address:</strong></label>
-          <input name="address" value={form.address} onChange={handleChange} required style={{ padding: "8px" }} />
+            <label><strong>Qualification:</strong></label>
+            <input name="qualification" value={form.qualification} onChange={handleChange} required style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }} />
 
-          <label><strong>Qualification:</strong></label>
-          <input name="qualification" value={form.qualification} onChange={handleChange} required style={{ padding: "8px" }} />
+            <label><strong>Age:</strong></label>
+            <input name="age" type="number" value={form.age} onChange={handleChange} required style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }} />
 
-          <label><strong>Age:</strong></label>
-          <input name="age" type="number" value={form.age} onChange={handleChange} required style={{ padding: "8px" }} />
-
-          <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
-            <button type="submit" style={{ padding: "8px 15px", background: "green", color: "#fff", border: "none", cursor: "pointer", borderRadius: "5px" }}>Save Changes</button>
-            <button type="button" onClick={() => setIsEditing(false)} style={{ padding: "8px 15px", cursor: "pointer", borderRadius: "5px" }}>Cancel</button>
-          </div>
-        </form>
-      )}
+            <div style={{ display: "flex", gap: "10px", marginTop: "15px" }}>
+              <button type="submit" style={{ padding: "8px 15px", background: "green", color: "#fff", border: "none", cursor: "pointer", borderRadius: "5px", fontWeight: "bold" }}>Save Changes</button>
+              <button type="button" onClick={() => setIsEditing(false)} style={{ padding: "8px 15px", cursor: "pointer", borderRadius: "5px", border: "1px solid #ccc", background: "#e5e7eb" }}>Cancel</button>
+            </div>
+          </form>
+        )}
+      </div>
     </div>
   );
 }
