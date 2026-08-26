@@ -6,7 +6,8 @@ import authroutes from './routes/authroutes.js'
 import adminroutes from './routes/adminRoutes.js'
 import villageheadroutes from './routes/villageheadRoutes.js'
 import campRoutes from './routes/campRoutes.js'
-import adminCampRoute from './routes/adminCampRoute.js'
+import adminCampRoute from './routes/adminCampRoute.js'\
+import UserRoutes from './routes/UserRoutes.js'
 
 dotenv.config()
 
@@ -37,6 +38,7 @@ app.use(villageheadroutes)
 app.use('/uploads',express.static('uploads'))
 app.use(campRoutes)
 app.use(adminCampRoute)
+app.use(UserRoutes)
 
 const PORT = process.env.PORT || 5000;
 
