@@ -75,28 +75,8 @@ return (
   <section className="hero">
     <h1>Welcome to Village Information Portal</h1>
 
-    {/* 🔥 ROLE BUTTONS / PROFILE ROUTE BUTTON */}
-    <div style={{ margin: "15px 0" }}>
-      <button 
-        onClick={() => navigate("/profile")} 
-        style={{
-          padding: "10px 20px",
-          background: "#2563eb",
-          color: "#fff",
-          border: "none",
-          borderRadius: "5px",
-          fontSize: "1rem",
-          cursor: "pointer",
-          fontWeight: "bold",
-          boxShadow: "0 2px 5px rgba(0,0,0,0.2)"
-        }}
-      >
-        Go to Profile 👤
-      </button>
-    </div>
-
     {/* Stats Pills */}
-    <div className="hero-stats">
+    <div className="hero-stats" style={{ marginTop: "15px" }}>
       <span className="hero-pill">Total Villages: {villages.length}</span>
       <span className="hero-pill">
         Total Population: {totalPopulation.toLocaleString()}
