@@ -22,7 +22,7 @@ function Navbar() {
 
       {/* 2. Controls & Navigation Links Block */}
       <nav className="nav-links">
-        {/* Role based buttons ab seedha nav-links ke andar hain taaki desktop par row aur mobile par stack ban sakein */}
+        {/* Role based buttons */}
         {role === "admin" && (
           <button 
             className="panel-btn"
@@ -42,6 +42,15 @@ function Navbar() {
         )}
 
         <Link to="/villages">Villages</Link>
+
+        {/* ⭐ Profile Button Added */}
+        <button 
+          className="profile-btn" 
+          onClick={() => navigate("/profile")}
+          style={{ background: "#2563eb", color: "#fff", border: "none", padding: "6px 12px", borderRadius: "4px", cursor: "pointer" }}
+        >
+          Profile 👤
+        </button>
         
         <button onClick={handleLogout} className="logout-btn">
           Logout
