@@ -40,7 +40,13 @@ const userSchema = new mongoose.Schema({
     }
   },
 
-  // ✅ ADDED FOR OTP LOGIN
+  // 🖼️ Profile Picture Field Added
+  profilePic: {
+    type: String,
+    default: ""
+  },
+
+  // OTP fields (je rakhe ne)
   loginOtp: {
     type: String
   },

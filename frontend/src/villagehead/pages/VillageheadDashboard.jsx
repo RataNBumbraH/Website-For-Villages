@@ -36,21 +36,37 @@ export default function VillageHeadDashboard() {
 
   return (
     <div>
-
       <h1>VillageHead Dashboard</h1>
 
-      {/* 👤 Profile Info */}
+      {/* 👤 Profile Info with Picture */}
       <div style={{
         background: "#fff",
         padding: "20px",
         borderRadius: "10px",
         marginBottom: "20px",
-        boxShadow: "0 2px 10px rgba(0,0,0,0.1)"
+        boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+        display: "flex",
+        alignItems: "center",
+        gap: "20px"
       }}>
-        <h2>Profile Info</h2>
+        {/* Profile Picture Display */}
+        <img 
+          src={profile.profilePic || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"} 
+          alt="Profile" 
+          style={{
+            width: "80px",
+            height: "80px",
+            borderRadius: "50%",
+            objectFit: "cover",
+            border: "2px solid #ccc"
+          }}
+        />
 
-        <p><strong>Name:</strong> {profile.username}</p>
-        <p><strong>Village:</strong> {profile.village?.name || "Not Assigned"}</p>
+        <div>
+          <h2>Profile Info</h2>
+          <p><strong>Name:</strong> {profile.username}</p>
+          <p><strong>Village:</strong> {profile.village?.name || "Not Assigned"}</p>
+        </div>
       </div>
 
       {/* 📊 Stats Cards */}
@@ -59,7 +75,6 @@ export default function VillageHeadDashboard() {
         gap: "20px",
         flexWrap: "wrap"
       }}>
-
         <div style={cardStyle}>
           <h3>Total Requests</h3>
           <p>{total}</p>
@@ -79,9 +94,7 @@ export default function VillageHeadDashboard() {
           <h3>Rejected</h3>
           <p>{rejected}</p>
         </div>
-
       </div>
-
     </div>
   );
 }

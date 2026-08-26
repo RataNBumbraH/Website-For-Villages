@@ -8,7 +8,7 @@ export default function Signup() {
   const [address, setAddress] = useState("")
   const [qualification, setQualification] = useState("")
   const [password, setPassword] = useState("")
-  const [confirmpassword, setConfirmPassword] = useState("") // ✅ Confirm password state
+  const [confirmpassword, setConfirmPassword] = useState("") 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {

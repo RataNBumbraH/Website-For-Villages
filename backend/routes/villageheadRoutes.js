@@ -9,14 +9,14 @@ import Camp from "../model/Camp.js"
 const router = express.Router()
 
 router.get("/villagehead/profile", protect, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id)
-      .populate("village", "name");
+    try {
+        const user = await User.findById(req.user.id)
+            .populate("village", "name");
 
-    res.json(user);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 /* SEND CAMP REQUEST */
