@@ -56,8 +56,8 @@ function App() {
         <Route path="/village/:id" element={<VillageDetails />} />
         <Route path="/villagedetails" element={<VillageDetails />} />
         
-        {/* ⭐ USER PROFILE ROUTE ADDED */}
-        <Route path="/profile" element={<UserProfile />} />
+        {/* ⭐ UPDATED TO MATCH NAVBAR & BACKEND ROUTE (/user/profile) */}
+        <Route path="/user/profile" element={<UserProfile />} />
 
         {/* ================= ADMIN PANEL ================= */}
         <Route
@@ -72,7 +72,7 @@ function App() {
 
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="villages" element={<AdminVillages />} />
-          <Route path="addvillage" element={<AddVillage />} />
+          <Route path="addvillage" element-={<AddVillage />} />
           <Route path="editvillage/:id" element={<EditVillage />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="camp-request" element={<AdminCampRequests />} />
