@@ -70,7 +70,7 @@ function App() {
 
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="villages" element={<AdminVillages />} />
-          <Route path="addvillage" element-={<AddVillage />} />
+          <Route path="addvillage" element={<AddVillage />} />
           <Route path="editvillage/:id" element={<EditVillage />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="camp-request" element={<AdminCampRequests />} />
