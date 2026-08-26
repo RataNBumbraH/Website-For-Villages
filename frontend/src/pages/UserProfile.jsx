@@ -41,7 +41,6 @@ export default function UserProfile() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // 📂 Handle image selection & compression to Base64
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -81,7 +80,6 @@ export default function UserProfile() {
     }
   };
 
-  // 🔄 Submit updated profile details
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
@@ -136,8 +134,8 @@ export default function UserProfile() {
               <p><strong>Address:</strong> {profile.address || "Not Provided"}</p>
               <p><strong>Qualification:</strong> {profile.qualification || "Not Provided"}</p>
               <p><strong>Age:</strong> {profile.age || "Not Provided"}</p>
-              
-              {/* ⭐ Assigned Village show only if role is villagehead */}
+
+              {/* ⭐ Yahan check lagaya hai: Sirf "villagehead" role wale user ko hi Assigned Village dikhega */}
               {profile.role === "villagehead" && (
                 <p><strong>Assigned Village:</strong> {profile.village?.name || "Not Assigned"}</p>
               )}
