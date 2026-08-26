@@ -43,10 +43,10 @@ function Navbar() {
 
         <Link to="/villages">Villages</Link>
 
-        {/* ⭐ Profile Button Added */}
+        {/* ⭐ Profile Button (Updated path to match App.jsx route /profile) */}
         <button 
           className="profile-btn" 
-          onClick={() => navigate("/user/profile")}
+          onClick={() => navigate("/profile")}
           style={{ background: "#2563eb", color: "#fff", border: "none", padding: "6px 12px", borderRadius: "4px", cursor: "pointer" }}
         >
           Profile 👤
