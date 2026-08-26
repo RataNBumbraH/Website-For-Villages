@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar"; // ⭐ Navbar added for consistency
+import Navbar from "../components/Navbar";
 
 export default function UserProfile() {
   const [profile, setProfile] = useState(null);
@@ -136,8 +136,12 @@ export default function UserProfile() {
               <p><strong>Address:</strong> {profile.address || "Not Provided"}</p>
               <p><strong>Qualification:</strong> {profile.qualification || "Not Provided"}</p>
               <p><strong>Age:</strong> {profile.age || "Not Provided"}</p>
-              {/* ⭐ Backend populate("village", "name") support added */}
-              <p><strong>Assigned Village:</strong> {profile.village?.name || "Not Assigned"}</p>
+              
+              {/* ⭐ Assigned Village show only if role is villagehead */}
+              {profile.role === "villagehead" && (
+                <p><strong>Assigned Village:</strong> {profile.village?.name || "Not Assigned"}</p>
+              )}
+
               <p><strong>Role:</strong> <span style={{ textTransform: "capitalize", fontWeight: "bold" }}>{profile.role}</span></p>
             </div>
           </div>
