@@ -35,9 +35,8 @@ router.post("/auth/signup", async (req, res) => {
     }
 });
 
-//Login 
 router.post("/auth/login", async (req, res) => {
-    const { contactno, password, otp } = req.body;
+    const { contactno, password } = req.body;
     try {
         const user = await User.findOne({ contactno });
         if (!user) { 
@@ -49,76 +48,26 @@ router.post("/auth/login", async (req, res) => {
             return res.status(400).json({ message: "Invalid Credentials" });
         }
 
-        // ✅ 2nd STEP: JE OTP AAYA HAI TA VERIFY KARO
-        if (otp) {
-            if (!user.loginOtp || user.loginOtp !== otp || user.otpExpire < Date.now()) {
-                return res.status(400).json({ message: "Invalid or Expired OTP" });
-            }
-            
-            // Login successful hon ton baad OTP clear kar do
-            user.loginOtp = undefined;
-            user.otpExpire = undefined;
-            await user.save();
+        const token = jwt.sign(
+            { id: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "7days" }
+        );
 
-            const token = jwt.sign(
-                { id: user._id },
-                process.env.JWT_SECRET,
-                { expiresIn: "7days" }
-            );
-
-            res.cookie("token", token, {
-                httpOnly: true,
-                sameSite: "strict",
-                maxAge: 7 * 24 * 60 * 60 * 1000
-            });
-
-            return res.json({
-                token,
-                userId: user._id,
-                username: user.username,
-                role: user.role
-            });
-        }
-
-        // ✅ 1st STEP: PASSWORD MATCH HOGYA, HUN OTP GENERATE KARO
-        const generatedOtp = Math.floor(100000 + Math.random() * 900000).toString(); // 6 digit OTP
-        user.loginOtp = generatedOtp;
-        user.otpExpire = Date.now() + 10 * 60 * 1000; // 10 minutes expiry
-        await user.save();
-
-        // 📱 FAST2SMS API TO SEND REAL SMS TO PHONE NUMBER
-        try {
-            const smsResponse = await fetch("https://www.fast2sms.com/dev/bulkV2", {
-                method: "POST",
-                headers: {
-                    "authorization": "OcmEPIbrTuDo6g9XNzkUJGhqBvAV4iFdZYQwL07153jWsaRtxyFTtCBugJAypj4lQWwLox5eZ0I278ki", 
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    route: "otp",
-                    variables_values: generatedOtp,
-                    numbers: contactno.toString() 
-                })
-            });
-
-            const smsData = await smsResponse.json();
-            console.log("Fast2SMS Response:", smsData);
-
-            if (!smsData.return) {
-                return res.status(500).json({ message: "Failed to send SMS. Check API Key or balance." });
-            }
-
-        } catch (smsErr) {
-            console.log("SMS Error:", smsErr);
-            return res.status(500).json({ message: "Error in sending SMS gateway" });
-        }
-
-        res.json({ 
-            requiresOtp: true, 
-            message: "OTP sent successfully to your mobile number!" 
+        res.cookie("token", token, {
+            httpOnly: true,
+            sameSite: "strict",
+            maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
-    } catch(error){
+        res.json({
+            token,
+            userId: user._id,
+            username: user.username,
+            role: user.role
+        });
+    }
+    catch(error){
         res.status(500).json({ error: error.message });
     }
 });
