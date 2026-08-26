@@ -191,7 +191,7 @@ if (req.files && req.files.length > 0) {
 newImages = req.files.map(file => file.filename);
 }
 
-// 🔥 DELETE removed images from server
+//  DELETE removed images from server
 const imagesToDelete = (village.highlightImages || [])
 .filter(img => !existingImages.includes(img));
 
@@ -283,36 +283,35 @@ router.get(
   }
 );
 
-router.put("/admin/user/:id",protect,adminOnly,async(req,res)=>{
+/* ==============================
+UPDATE USER (Including Profile Pic)
+============================== */
 
-try{
+router.put("/admin/user/:id", protect, adminOnly, async (req, res) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        username: req.body.username || req.body.name,
+        contactno: req.body.contactno,
+        address: req.body.address,
+        qualification: req.body.qualification,
+        age: req.body.age,
+        role: req.body.role,
+        profilePic: req.body.profilePic 
+      },
+      { new: true }
+    );
 
-const updatedUser = await User.findByIdAndUpdate(
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
 
-req.params.id,
-
-{
-username:req.body.username || user.body.name,
-contactno:req.body.contactno,
-address:req.body.address,
-qualification:req.body.qualification,
-age:req.body.age,
-role:req.body.role
-},
-
-{new:true}
-
-)
-
-res.json(updatedUser)
-
-}catch(err){
-
-res.status(500).json({error:err.message})
-
-}
-
-})
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 router.delete("/admin/user/:id",protect,adminOnly,async(req,res)=>{
 
