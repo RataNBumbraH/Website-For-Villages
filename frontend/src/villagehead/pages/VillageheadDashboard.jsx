@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export default function VillageHeadDashboard() {
   const [profile, setProfile] = useState(null);
   const [requests, setRequests] = useState([]);
-  const [selectedImage, setSelectedImage] = useState(""); // 📸 Base64 string for file
+  const [selectedImage, setSelectedImage] = useState(""); 
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
@@ -31,13 +31,13 @@ export default function VillageHeadDashboard() {
       .then((data) => setRequests(data));
   };
 
-  // 📂 Function to handle file selection and convert to Base64
+  // 📂 Function to handle file selection (Base64 conversion)
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setSelectedImage(reader.result); // Base64 string
+        setSelectedImage(reader.result);
       };
       reader.readAsDataURL(file);
     }
@@ -76,6 +76,35 @@ export default function VillageHeadDashboard() {
     }
   };
 
+  // ❌ Function to remove profile picture
+  const handleRemovePic = async () => {
+    const confirmRemove = window.confirm("Are you sure you want to remove your profile picture?");
+    if (!confirmRemove) return;
+
+    const token = localStorage.getItem("token");
+    try {
+      const res = await fetch("https://website-for-villages-backend.onrender.com/villagehead/update-pic", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({ profilePic: "" }), // 👈 Empty string to clear picture
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setProfile(data.user);
+        setIsEditing(false);
+        alert("Profile picture removed!");
+      } else {
+        alert(data.message || "Failed to remove picture");
+      }
+    } catch (err) {
+      console.log(err);
+      alert("Error removing picture");
+    }
+  };
+
   if (!profile) return <p>Loading dashboard...</p>;
 
   const total = requests.length;
@@ -87,7 +116,7 @@ export default function VillageHeadDashboard() {
     <div>
       <h1>VillageHead Dashboard</h1>
 
-      {/* 👤 Profile Info with File Upload */}
+      {/* 👤 Profile Info with Picture & Remove Option */}
       <div style={{
         background: "#fff",
         padding: "20px",
@@ -117,17 +146,28 @@ export default function VillageHeadDashboard() {
           <p><strong>Name:</strong> {profile.username}</p>
           <p><strong>Village:</strong> {profile.village?.name || "Not Assigned"}</p>
           
-          {/* Toggle Edit Button */}
+          {/* Action Buttons */}
           {!isEditing ? (
-            <button 
-              onClick={() => setIsEditing(true)}
-              style={{ marginTop: "10px", padding: "5px 10px", cursor: "pointer" }}
-            >
-              Change Picture
-            </button>
+            <div style={{ display: "flex", gap: "10px", marginTop: "10px", flexWrap: "wrap" }}>
+              <button 
+                onClick={() => setIsEditing(true)}
+                style={{ padding: "5px 10px", cursor: "pointer" }}
+              >
+                Change Picture
+              </button>
+
+              {/* ✅ Remove Picture Button (Only shows if profilePic exists) */}
+              {profile.profilePic && (
+                <button 
+                  onClick={handleRemovePic}
+                  style={{ padding: "5px 10px", background: "#fee2e2", color: "red", border: "1px solid red", cursor: "pointer" }}
+                >
+                  Remove Picture
+                </button>
+              )}
+            </div>
           ) : (
             <form onSubmit={handleUpdatePic} style={{ marginTop: "10px", display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center" }}>
-              {/* File Input */}
               <input 
                 type="file" 
                 accept="image/*"
