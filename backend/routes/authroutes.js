@@ -8,30 +8,33 @@ const router = express.Router();
 
 //Signup
 router.post("/auth/signup", async (req, res) => {
-    const {username,contactno,age,address,qualification,password} = req.body;
-    try{
-        const userexists = await User.findOne({contactno})
+    const { username, contactno, age, address, qualification, password, confirmpassword } = req.body;
+    try {
+        const userexists = await User.findOne({ contactno })
         if(userexists){
-            return res.status(400).json({ message : "User already exists"})
+            return res.status(400).json({ message : "User already exists" })
         }
         if(password.length < 6){
-            return res.status(400).json({message:"Password must be at least 6 characters"}) 
+            return res.status(400).json({ message: "Password must be at least 6 characters" }) 
         }
-        const hashedpass =  await bcrypt.hash(password,12)
-        const newuser = await User.create(
-            {
-                username,
-                contactno,
-                age, 
-                address,
-                qualification,
-                password:hashedpass
-            }
-        )
-        res.status(201).json({message : "User Registered"})
+        // ✅ Check if password and confirm password match
+        if(password !== confirmpassword){
+            return res.status(400).json({ message: "Passwords do not match" })
+        }
+
+        const hashedpass = await bcrypt.hash(password, 12)
+        const newuser = await User.create({
+            username,
+            contactno,
+            age, 
+            address,
+            qualification,
+            password: hashedpass
+        })
+        res.status(201).json({ message: "User Registered" })
     }
     catch(error){
-        res.status(500).json({error : error.message})
+        res.status(500).json({ error: error.message })
     }
 });
 
