@@ -46,7 +46,7 @@ function Navbar() {
         {/* ⭐ Profile Button (Updated path to match App.jsx route /profile) */}
         <button 
           className="profile-btn" 
-          onClick={() => navigate("/profile")}
+          onClick={() => navigate("/user/profile")}
           style={{ background: "#2563eb", color: "#fff", border: "none", padding: "6px 12px", borderRadius: "4px", cursor: "pointer" }}
         >
           Profile 👤

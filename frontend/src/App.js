@@ -55,8 +55,6 @@ function App() {
         <Route path="/villages" element={<Villages />} />
         <Route path="/village/:id" element={<VillageDetails />} />
         <Route path="/villagedetails" element={<VillageDetails />} />
-        
-        {/* ⭐ UPDATED TO MATCH NAVBAR & BACKEND ROUTE (/user/profile) */}
         <Route path="/user/profile" element={<UserProfile />} />
 
         {/* ================= ADMIN PANEL ================= */}
