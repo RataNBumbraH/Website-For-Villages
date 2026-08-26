@@ -132,7 +132,6 @@ export default function UserProfile() {
 
             <div style={{ display: "flex", flexDirection: "column", gap: "12px", background: "#f9fafb", padding: "15px", borderRadius: "8px" }}>
               <p><strong>Name:</strong> {profile.username || profile.name}</p>
-              <p><strong>Email:</strong> {profile.email}</p>
               <p><strong>Contact No:</strong> {profile.contactno || "Not Provided"}</p>
               <p><strong>Address:</strong> {profile.address || "Not Provided"}</p>
               <p><strong>Qualification:</strong> {profile.qualification || "Not Provided"}</p>
