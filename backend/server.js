@@ -6,7 +6,7 @@ import authroutes from './routes/authroutes.js'
 import adminroutes from './routes/adminRoutes.js'
 import villageheadroutes from './routes/villageheadRoutes.js'
 import campRoutes from './routes/campRoutes.js'
-import adminCampRoute from './routes/adminCampRoute.js'\
+import adminCampRoute from './routes/adminCampRoute.js'
 import UserRoutes from './routes/UserRoutes.js'
 
 dotenv.config()
