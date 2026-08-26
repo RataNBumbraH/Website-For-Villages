@@ -19,6 +19,22 @@ router.get("/villagehead/profile", protect, async (req, res) => {
     }
 });
 
+// ✅ Route to update Profile Picture URL
+router.put("/villagehead/update-pic", protect, async (req, res) => {
+    try {
+        const { profilePic } = req.body;
+        const updatedUser = await User.findByIdAndUpdate(
+            req.user.id,
+            { profilePic },
+            { new: true }
+        ).populate("village", "name");
+
+        res.json({ message: "Profile picture updated successfully!", user: updatedUser });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 /* SEND CAMP REQUEST */
 
 router.post(
