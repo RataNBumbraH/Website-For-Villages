@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 export default function VillageHeadDashboard() {
   const [profile, setProfile] = useState(null);
   const [requests, setRequests] = useState([]);
-  const [newPicUrl, setNewPicUrl] = useState(""); // 📸 New state for image URL
-  const [isEditing, setIsEditing] = useState(false); // Toggle edit mode
+  const [selectedImage, setSelectedImage] = useState(""); // 📸 Base64 string for file
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     fetchProfile();
@@ -19,7 +19,6 @@ export default function VillageHeadDashboard() {
       .then((res) => res.json())
       .then((data) => {
         setProfile(data);
-        setNewPicUrl(data.profilePic || "");
       });
   };
 
@@ -32,9 +31,26 @@ export default function VillageHeadDashboard() {
       .then((data) => setRequests(data));
   };
 
+  // 📂 Function to handle file selection and convert to Base64
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImage(reader.result); // Base64 string
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   // 🔄 Function to update profile picture
   const handleUpdatePic = async (e) => {
     e.preventDefault();
+    if (!selectedImage) {
+      alert("Please select an image file first!");
+      return;
+    }
+
     const token = localStorage.getItem("token");
     try {
       const res = await fetch("https://website-for-villages-backend.onrender.com/villagehead/update-pic", {
@@ -43,12 +59,13 @@ export default function VillageHeadDashboard() {
           "Content-Type": "application/json",
           Authorization: "Bearer " + token,
         },
-        body: JSON.stringify({ profilePic: newPicUrl }),
+        body: JSON.stringify({ profilePic: selectedImage }),
       });
       const data = await res.json();
       if (res.ok) {
         setProfile(data.user);
         setIsEditing(false);
+        setSelectedImage("");
         alert("Profile picture updated!");
       } else {
         alert(data.message || "Failed to update picture");
@@ -61,7 +78,6 @@ export default function VillageHeadDashboard() {
 
   if (!profile) return <p>Loading dashboard...</p>;
 
-  // 📊 Stats
   const total = requests.length;
   const approved = requests.filter(r => r.status === "approved").length;
   const pending = requests.filter(r => r.status === "pending").length;
@@ -71,7 +87,7 @@ export default function VillageHeadDashboard() {
     <div>
       <h1>VillageHead Dashboard</h1>
 
-      {/* 👤 Profile Info with Picture & Update Option */}
+      {/* 👤 Profile Info with File Upload */}
       <div style={{
         background: "#fff",
         padding: "20px",
@@ -110,17 +126,17 @@ export default function VillageHeadDashboard() {
               Change Picture
             </button>
           ) : (
-            <form onSubmit={handleUpdatePic} style={{ marginTop: "10px", display: "flex", gap: "10px", flexWrap: "wrap" }}>
+            <form onSubmit={handleUpdatePic} style={{ marginTop: "10px", display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center" }}>
+              {/* File Input */}
               <input 
-                type="text" 
-                placeholder="Paste Image URL here" 
-                value={newPicUrl}
-                onChange={(e) => setNewPicUrl(e.target.value)}
+                type="file" 
+                accept="image/*"
+                onChange={handleFileChange}
                 style={{ padding: "5px", flex: 1, minWidth: "200px" }}
                 required
               />
               <button type="submit" style={{ padding: "5px 10px", background: "green", color: "#fff", border: "none", cursor: "pointer" }}>
-                Save
+                Upload & Save
               </button>
               <button type="button" onClick={() => setIsEditing(false)} style={{ padding: "5px 10px", cursor: "pointer" }}>
                 Cancel

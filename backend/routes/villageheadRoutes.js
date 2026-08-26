@@ -22,7 +22,7 @@ router.get("/villagehead/profile", protect, async (req, res) => {
 // ✅ Route to update Profile Picture URL
 router.put("/villagehead/update-pic", protect, async (req, res) => {
     try {
-        const { profilePic } = req.body;
+        const { profilePic } = req.body; // Eh base64 string hovegi
         const updatedUser = await User.findByIdAndUpdate(
             req.user.id,
             { profilePic },
