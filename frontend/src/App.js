@@ -7,6 +7,9 @@ import Villages from "./pages/Villages";
 import Home from "./pages/Home";
 import VillageDetails from "./pages/VillageDetails";
 
+/* 🔥 NEW USER PROFILE IMPORT */
+import UserProfile from "./pages/UserProfile";
+
 import AdminLayout from "./admin/adminLayout";
 import AdminDashboard from "./admin/pages/adminDashboard";
 import AdminVillages from "./admin/pages/adminVillages";
@@ -44,7 +47,7 @@ function App() {
     <div className="web-background">
       <Routes>
 
-        {/* ================= PUBLIC ROUTES ================= */}
+        {/* ================= PUBLIC / USER ROUTES ================= */}
         <Route path="/" element={<Index />} />
         <Route path="/auth/signup" element={<Signup />} />
         <Route path="/auth/login" element={<Login />} />
@@ -52,6 +55,9 @@ function App() {
         <Route path="/villages" element={<Villages />} />
         <Route path="/village/:id" element={<VillageDetails />} />
         <Route path="/villagedetails" element={<VillageDetails />} />
+        
+        {/* ⭐ USER PROFILE ROUTE ADDED */}
+        <Route path="/profile" element={<UserProfile />} />
 
         {/* ================= ADMIN PANEL ================= */}
         <Route
